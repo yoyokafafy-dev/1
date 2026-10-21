@@ -3,693 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فصل 4/6 - مدرسة رياض الخاصة</title>
+    <title>مواقع النشاطات</title>
+    <link rel="stylesheet" href="style1.css">
     <style>
-        :root {
-            --primary: #4CAF50;
-            --accent: #2196F3;
-            --dark: #2c3e50;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
             margin: 0;
-            padding: 0;
-            color: #333;
-            user-select: none;
-        }
-
-        /* شريط النقاط العلوي */
-        .points-header {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            background: #2b2b2b;
-            color: #ffd700;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 1000;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            border: 2px solid #ffd700;
-        }
-
-        /* الصفحة الرئيسية */
-        .main-page {
-            max-width: 900px;
-            margin: 80px auto 30px;
-            padding: 20px;
-            text-align: center;
+            justify-content: center;
+            gap: 20px;
         }
 
         h1 {
-            color: var(--dark);
-            font-size: 22px;
-            line-height: 1.6;
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        /* أزرار التنقل */
-        .nav-buttons {
+        .buttons-container {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin: 25px 0;
+            justify-content: center;
         }
 
+        /* تصميم الأزرار الفخم والمجسم */
         .my-btn {
-            background-color: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            text-decoration: none;
             display: inline-block;
-        }
-
-        .my-btn:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
-
-        .my-btn.blue { background-color: #2196F3; }
-        .my-btn.blue:hover { background-color: #1e87db; }
-
-        .my-btn.orange { background-color: #FF9800; }
-        .my-btn.orange:hover { background-color: #e68a00; }
-
-        .my-btn.purple { background-color: #9C27B0; }
-        .my-btn.purple:hover { background-color: #8e24aa; }
-
-        /* قسم الأخبار */
-        .news-section {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-            margin-top: 20px;
-        }
-
-        .news-title {
-            color: #d32f2f;
-            font-size: 24px;
-            margin-top: 0;
-        }
-
-        .news-text {
+            text-decoration: none;
+            color: #ffffff;
             font-size: 18px;
             font-weight: bold;
-            color: #444;
-            margin-bottom: 25px;
-        }
-
-        /* شريط الصور المتحرك للأبد */
-        .slider-container {
-            overflow: hidden;
-            width: 100%;
-            border-radius: 10px;
-            background: #f9f9f9;
-            padding: 10px 0;
-        }
-
-        .slider-track {
-            display: flex;
-            width: calc(220px * 12);
-            animation: scrollInfinite 20s linear infinite;
-        }
-
-        .slider-track img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            margin: 0 10px;
-            border-radius: 10px;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-        }
-
-        @keyframes scrollInfinite {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-220px * 6)); }
-        }
-
-        /* الشاشات والمكونات */
-        .view-panel {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            z-index: 2000;
-            overflow: auto;
-        }
-
-        .view-panel.active { display: block; }
-
-        .close-panel-btn {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: #f44336;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 2100;
-        }
-
-        /* السبورة */
-        .whiteboard-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background: #e8e8e8;
-        }
-
-        .wb-toolbar {
-            background: #333;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .pen-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 3px solid white;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .pen-btn.active { transform: scale(1.2); border-color: #ffd700; }
-
-        .eraser-btn {
-            background: #ffcc80;
-            color: #333;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-        }
-
-        canvas.board {
-            flex: 1;
-            background: white;
-            cursor: crosshair;
-            touch-action: none;
-        }
-
-        /* منطقة الألعاب */
-        .game-canvas-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: #111;
-            color: white;
-            padding: 10px;
-        }
-
-        canvas.game-screen {
-            background: #87CEEB;
-            border: 4px solid #fff;
+            padding: 15px 32px;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* أزرار اللمس المخصصة للهاتف (واضحة بالكامل) */
-        .touch-controls {
-            display: grid;
-            grid-template-columns: repeat(3, 70px);
-            grid-template-rows: repeat(2, 70px);
-            gap: 12px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-
-        .touch-btn {
-            background: #ffffff;
-            border: 3px solid #111;
-            color: #111;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: linear-gradient(145deg, #4CAF50, #388E3C);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4), 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            touch-action: manipulation;
-            box-shadow: 0 5px 0px #888;
-            transition: all 0.1s ease;
         }
 
-        .touch-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0px #888;
-            background: #2196F3;
-            color: white;
+        /* زر علوم بلون مميز (أزرق فخم) */
+        .my-btn.science-btn {
+            background: linear-gradient(145deg, #2196F3, #1976D2);
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4), 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .touch-btn.boost {
-            background: #ff9800;
-            color: white;
-            font-size: 16px;
+        /* تأثير عند مرور الماوس (Hover) */
+        .my-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+
+        /* تأثير عند الضغط على الزر (Active) */
+        .my-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
 <body>
 
-    <!-- شريط النقاط -->
-    <div class="points-header">
-        🏆 النقاط: <span id="userPoints">10000</span>
+    <h1>🚀 مرحباً بكم في موقع النشاطات 🚀</h1>
+
+    <div class="buttons-container">
+        <!-- الزر الأول -->
+        <a href="index1.html" target="_blank" class="my-btn">🌐 فتح أول موقع</a>
+
+        <!-- الزر الثاني -->
+        <a href="index2.html" target="_blank" class="my-btn science-btn">🔬 فتح نشاط علوم</a>
     </div>
 
-    <!-- الصفحة الرئيسية -->
-    <div class="main-page">
-        <h1>تم صنعه بالتعاون مع طلاب 4/6 في مدرسة رياض الخاصة<br>أسماء الطلاب: يوسف ياسر - مالك أمير - أحمد محمد شفيق</h1>
-
-        <div class="nav-buttons">
-            <button class="my-btn" onclick="openWhiteboard()">🎨 فتح السبورة (+1000 نقطة عند الحفظ)</button>
-            <button class="my-btn blue" onclick="startGame('car')">🚗 لعبة السيارة (-10 نقاط)</button>
-            <button class="my-btn orange" onclick="startGame('plane')">✈️ لعبة الطائرة (-10 نقاط)</button>
-            <button class="my-btn purple" onclick="startGame('bus')">🚌 لعبة حافلة المدرسة (-10 نقاط)</button>
-        </div>
-
-        <!-- قسم الأخبار -->
-        <div class="news-section">
-            <h2 class="news-title">الأخبار</h2>
-            <p class="news-text">يرجى الحفاظ على نظافة الفصل والمدرسة والحمامات نظيفة مثل هذه الفصول</p>
-
-            <div class="slider-container">
-                <div class="slider-track">
-                    <img src="images (1).jpg" alt="فصل 1">
-                    <img src="images.jpg" alt="فصل 2">
-                    <img src="images (2).jpg" alt="فصل 3">
-                    <img src="download (1).jpg" alt="فصل 4">
-                    <img src="download (2).jpg" alt="فصل 5">
-                    <img src="download.jpg" alt="فصل 6">
-                    <!-- تكرار الحركة المستمرة -->
-                    <img src="images (1).jpg" alt="فصل 1">
-                    <img src="images.jpg" alt="فصل 2">
-                    <img src="images (2).jpg" alt="فصل 3">
-                    <img src="download (1).jpg" alt="فصل 4">
-                    <img src="download (2).jpg" alt="فصل 5">
-                    <img src="download.jpg" alt="فصل 6">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة السبورة -->
-    <div id="whiteboardPanel" class="view-panel">
-        <button class="close-panel-btn" onclick="closePanel('whiteboardPanel')">إغلاق السبورة ✖</button>
-        <div class="whiteboard-container">
-            <div class="wb-toolbar">
-                <div class="pen-btn active" style="background: black;" onclick="setPen('black', 3, this)"></div>
-                <div class="pen-btn" style="background: red;" onclick="setPen('red', 3, this)"></div>
-                <div class="pen-btn" style="background: blue;" onclick="setPen('blue', 3, this)"></div>
-                <div class="pen-btn" style="background: green;" onclick="setPen('green', 3, this)"></div>
-                <button class="eraser-btn" onclick="setEraser()">🧹 بشورة</button>
-                <button class="my-btn" onclick="saveBoard()">💾 حفظ المذاكرة PNG (+1000 نقطة)</button>
-            </div>
-            <canvas id="paintBoard" class="board"></canvas>
-        </div>
-    </div>
-
-    <!-- نافذة الألعاب -->
-    <div id="gamePanel" class="view-panel">
-        <button class="close-panel-btn" onclick="closePanel('gamePanel')">خروج من اللعبة ✖</button>
-        <div class="game-canvas-container">
-            <h2 id="gameTitle">اللعبة</h2>
-            <p>التحكم: <b>W A S D</b> للحركة من الكيبورد أو أزرار التاتش بالأسفل | <b>Shift</b> للتسريع ⚡</p>
-            <canvas id="gameCanvas" class="game-screen" width="700" height="400"></canvas>
-            
-            <!-- أزرار التحكم باللمس الموضحة بالكامل (W, A, S, D, Shift) -->
-            <div class="touch-controls">
-                <div class="touch-btn boost" id="btnShift">⚡ السرعة</div>
-                <div class="touch-btn" id="btnUp">W ⬆️</div>
-                <div></div>
-                <div class="touch-btn" id="btnLeft">A ⬅️</div>
-                <div class="touch-btn" id="btnDown">S ⬇️</div>
-                <div class="touch-btn" id="btnRight">D ➡️</div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // نظام النقاط
-        let points = 10000;
-        function updatePointsDisplay() {
-            document.getElementById('userPoints').innerText = points;
-        }
-
-        function checkAndDeductPoints(cost) {
-            if (points < cost) {
-                alert("عفواً! لا يمكنك الدخول لأن نقاطك 0. قم بزيارة السبورة واحفظ مذاكرتك لكسب +1000 نقطة!");
-                return false;
-            }
-            points -= cost;
-            updatePointsDisplay();
-            return true;
-        }
-
-        function closePanel(panelId) {
-            document.getElementById(panelId).classList.remove('active');
-            if(gameLoopId) cancelAnimationFrame(gameLoopId);
-        }
-
-        /* --- برمجية السبورة --- */
-        const canvas = document.getElementById('paintBoard');
-        const ctx = canvas.getContext('2d');
-        let drawing = false;
-        let currentColor = 'black';
-        let currentSize = 3;
-        let isEraser = false;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight - 60;
-        }
-
-        function openWhiteboard() {
-            document.getElementById('whiteboardPanel').classList.add('active');
-            resizeCanvas();
-        }
-
-        function setPen(color, size, element) {
-            currentColor = color;
-            currentSize = size;
-            isEraser = false;
-            document.querySelectorAll('.pen-btn').forEach(b => b.classList.remove('active'));
-            if(element) element.classList.add('active');
-        }
-
-        function setEraser() {
-            isEraser = true;
-        }
-
-        canvas.addEventListener('mousedown', startDraw);
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mouseup', endDraw);
-        canvas.addEventListener('touchstart', (e) => startDraw(e.touches[0]));
-        canvas.addEventListener('touchmove', (e) => draw(e.touches[0]));
-        canvas.addEventListener('touchend', endDraw);
-
-        function startDraw(e) {
-            drawing = true;
-            ctx.beginPath();
-            ctx.moveTo(e.clientX, e.clientY - 60);
-        }
-
-        function draw(e) {
-            if(!drawing) return;
-            ctx.lineWidth = isEraser ? 30 : currentSize;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = isEraser ? '#ffffff' : currentColor;
-            ctx.lineTo(e.clientX, e.clientY - 60);
-            ctx.stroke();
-        }
-
-        function endDraw() { drawing = false; }
-
-        function saveBoard() {
-            const link = document.createElement('a');
-            link.download = 'مذاكرتي.png';
-            link.href = canvas.toDataURL();
-            link.click();
-            points += 1000;
-            updatePointsDisplay();
-            alert("ممتاز! تم حفظ المذاكرة وحصلت على +1000 نقطة 🏆");
-        }
-
-        /* --- محرك الألعاب ومفاتيح الكيبورد/التاتش --- */
-        const gameCanvas = document.getElementById('gameCanvas');
-        const gctx = gameCanvas.getContext('2d');
-        let currentGame = '';
-        let gameLoopId = null;
-
-        const keys = { w: false, a: false, s: false, d: false, shift: false };
-
-        window.addEventListener('keydown', (e) => {
-            let key = e.key.toLowerCase();
-            if (key === 'w' || key === 'ص') keys.w = true;
-            if (key === 'a' || key === 'ش') keys.a = true;
-            if (key === 's' || key === 'س') keys.s = true;
-            if (key === 'd' || key === 'ي') keys.d = true;
-            if (e.key === 'Shift') keys.shift = true;
-        });
-
-        window.addEventListener('keyup', (e) => {
-            let key = e.key.toLowerCase();
-            if (key === 'w' || key === 'ص') keys.w = false;
-            if (key === 'a' || key === 'ش') keys.a = false;
-            if (key === 's' || key === 'س') keys.s = false;
-            if (key === 'd' || key === 'ي') keys.d = false;
-            if (e.key === 'Shift') keys.shift = false;
-        });
-
-        function setupTouchBtn(id, keyName) {
-            const btn = document.getElementById(id);
-            const start = (e) => { e.preventDefault(); keys[keyName] = true; };
-            const end = (e) => { e.preventDefault(); keys[keyName] = false; };
-            
-            btn.addEventListener('touchstart', start);
-            btn.addEventListener('touchend', end);
-            btn.addEventListener('mousedown', start);
-            btn.addEventListener('mouseup', end);
-            btn.addEventListener('mouseleave', end);
-        }
-        setupTouchBtn('btnUp', 'w');
-        setupTouchBtn('btnLeft', 'a');
-        setupTouchBtn('btnDown', 's');
-        setupTouchBtn('btnRight', 'd');
-        setupTouchBtn('btnShift', 'shift');
-
-        function startGame(type) {
-            if(!checkAndDeductPoints(10)) return;
-
-            currentGame = type;
-            document.getElementById('gamePanel').classList.add('active');
-            initGameVars();
-            if(gameLoopId) cancelAnimationFrame(gameLoopId);
-            gameLoop();
-        }
-
-        let player = { x: 300, y: 220 };
-        let roadOffset = 0;
-        let clouds = [
-            {x: 100, y: 80, size: 30},
-            {x: 400, y: 120, size: 45},
-            {x: 600, y: 60, size: 35}
-        ];
-        
-        let busState = { 
-            x: 50, 
-            passengers: 0, 
-            stationX: 250, 
-            schoolX: 550,
-            students: [{x: 230, inBus: false}, {x: 220, inBus: false}, {x: 210, inBus: false}],
-            isBoarding: false
-        };
-
-        function initGameVars() {
-            player = { x: 300, y: 220 };
-            roadOffset = 0;
-            busState = { 
-                x: 50, 
-                passengers: 0, 
-                stationX: 250, 
-                schoolX: 550,
-                students: [{x: 230, inBus: false}, {x: 220, inBus: false}, {x: 210, inBus: false}],
-                isBoarding: false
-            };
-        }
-
-        function gameLoop() {
-            gctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-            let speed = keys.shift ? 10 : 5;
-
-            // 1. لعبة السيارة
-            if(currentGame === 'car') {
-                document.getElementById('gameTitle').innerText = "🚗 لعبة السيارة";
-                
-                if(keys.w && player.y > 115) player.y -= speed;
-                if(keys.s && player.y < 265) player.y += speed;
-                if(keys.a && player.x > 20) player.x -= speed;
-                if(keys.d && player.x < 620) player.x += speed;
-
-                roadOffset = (roadOffset + speed * 2) % 40;
-
-                gctx.fillStyle = "#2e7d32"; gctx.fillRect(0, 0, 700, 400);
-                gctx.fillStyle = "#424242"; gctx.fillRect(0, 100, 700, 200);
-
-                gctx.fillStyle = "#d32f2f";
-                gctx.fillRect(0, 95, 700, 5); gctx.fillRect(0, 300, 700, 5);
-
-                gctx.fillStyle = "#ffffff";
-                for(let i = -40; i < 750; i += 40) {
-                    gctx.fillRect(i - roadOffset, 195, 20, 10);
-                }
-
-                gctx.fillStyle = "rgba(0,0,0,0.3)";
-                gctx.fillRect(player.x+5, player.y+25, 65, 10);
-
-                gctx.fillStyle = "#d50000";
-                gctx.fillRect(player.x, player.y, 70, 25);
-
-                gctx.fillStyle = "#111";
-                gctx.fillRect(player.x+8, player.y-4, 14, 6);
-                gctx.fillRect(player.x+48, player.y-4, 14, 6);
-                gctx.fillRect(player.x+8, player.y+23, 14, 6);
-                gctx.fillRect(player.x+48, player.y+23, 14, 6);
-
-                gctx.fillStyle = "#90caf9";
-                gctx.fillRect(player.x+40, player.y+3, 15, 19);
-
-                gctx.fillStyle = "#ffeb3b";
-                gctx.fillRect(player.x+66, player.y+2, 5, 6);
-                gctx.fillRect(player.x+66, player.y+17, 5, 6);
-            } 
-
-            // 2. لعبة الطائرة
-            else if(currentGame === 'plane') {
-                document.getElementById('gameTitle').innerText = "✈️ لعبة الطائرة والسحاب";
-                
-                gctx.fillStyle = "#4fc3f7";
-                gctx.fillRect(0, 0, 700, 400);
-
-                let dx = 0, dy = 0;
-                if(keys.w) { player.y -= speed; dy = speed; }
-                if(keys.s) { player.y += speed; dy = -speed; }
-                if(keys.a) { player.x -= speed; dx = speed; }
-                if(keys.d) { player.x += speed; dx = -speed; }
-
-                clouds.forEach(c => {
-                    c.x += dx * 0.5;
-                    c.y += dy * 0.5;
-                    if(c.x < -100) c.x = 750;
-                    if(c.x > 750) c.x = -100;
-                    if(c.y < -50) c.y = 420;
-                    if(c.y > 450) c.y = -50;
-
-                    gctx.fillStyle = "rgba(255,255,255,0.85)";
-                    gctx.beginPath();
-                    gctx.arc(c.x, c.y, c.size, 0, Math.PI*2);
-                    gctx.arc(c.x+20, c.y-10, c.size*0.8, 0, Math.PI*2);
-                    gctx.arc(c.x+40, c.y, c.size*0.7, 0, Math.PI*2);
-                    gctx.fill();
-                });
-
-                gctx.fillStyle = keys.shift ? "#ff3d00" : "#ff9100";
-                gctx.beginPath();
-                gctx.moveTo(player.x-10, player.y+12);
-                gctx.lineTo(player.x - (keys.shift? 30:15), player.y+15);
-                gctx.lineTo(player.x-10, player.y+18);
-                gctx.fill();
-
-                gctx.fillStyle = "#ffffff";
-                gctx.beginPath();
-                gctx.moveTo(player.x+60, player.y+15);
-                gctx.lineTo(player.x, player.y);
-                gctx.lineTo(player.x+15, player.y+15);
-                gctx.lineTo(player.x, player.y+30);
-                gctx.closePath();
-                gctx.fill();
-
-                gctx.fillStyle = "#b0bec5";
-                gctx.fillRect(player.x+20, player.y-15, 12, 60);
-
-                gctx.fillStyle = "#0288d1";
-                gctx.beginPath();
-                gctx.arc(player.x+38, player.y+15, 6, 0, Math.PI*2);
-                gctx.fill();
-            }
-
-            // 3. لعبة أوتوبيس المدرسة
-            else if(currentGame === 'bus') {
-                document.getElementById('gameTitle').innerText = "🚌 لعبة أوتوبيس المدرسة";
-                
-                gctx.fillStyle = "#81c784"; gctx.fillRect(0, 0, 700, 400);
-                gctx.fillStyle = "#37474f"; gctx.fillRect(0, 210, 700, 110);
-
-                gctx.fillStyle = "#1565c0"; gctx.fillRect(busState.stationX, 140, 45, 70);
-                gctx.fillStyle = "white"; gctx.fillText("🚏 المحطة", busState.stationX, 130);
-
-                gctx.fillStyle = "#c62828"; gctx.fillRect(busState.schoolX, 110, 100, 100);
-                gctx.fillStyle = "white"; gctx.fillText("🏫 المدرسة", busState.schoolX+20, 100);
-
-                if(keys.d) busState.x += speed;
-                if(keys.a) busState.x -= speed;
-
-                if(Math.abs(busState.x - busState.stationX) < 15 && busState.passengers === 0) {
-                    busState.isBoarding = true;
-                }
-
-                busState.students.forEach((student, index) => {
-                    if(!student.inBus) {
-                        if(busState.isBoarding) {
-                            student.x += 1.5;
-                            if(student.x >= busState.x) {
-                                student.inBus = true;
-                                busState.passengers++;
-                                if(busState.passengers === 3) {
-                                    alert("ركب جميع الطلاب الحافلة! قد الآن لنقلهم إلى المدرسة 🏫");
-                                }
-                            }
-                        }
-                        gctx.fillStyle = index === 0 ? "blue" : (index === 1 ? "green" : "purple");
-                        gctx.beginPath(); gctx.arc(student.x, 260, 6, 0, Math.PI*2); gctx.fill();
-                        gctx.fillRect(student.x-3, 266, 6, 12);
-                    }
-                });
-
-                if(Math.abs(busState.x - busState.schoolX) < 15 && busState.passengers === 3) {
-                    busState.passengers = 0;
-                    busState.isBoarding = false;
-                    points += 50;
-                    updatePointsDisplay();
-                    alert("ممتاز! وصل الطلاب للمدرسة بسلام وحصلت على +50 نقطة 🏆");
-                }
-
-                gctx.fillStyle = "#fbc02d";
-                gctx.fillRect(busState.x, 230, 95, 45);
-
-                gctx.fillStyle = "#263238";
-                for(let w = 10; w < 80; w += 20) {
-                    gctx.fillRect(busState.x + w, 238, 12, 14);
-                }
-
-                gctx.fillStyle = "#111";
-                gctx.beginPath(); gctx.arc(busState.x+20, 275, 10, 0, Math.PI*2); gctx.fill();
-                gctx.beginPath(); gctx.arc(busState.x+75, 275, 10, 0, Math.PI*2); gctx.fill();
-            }
-
-            gameLoopId = requestAnimationFrame(gameLoop);
-        }
-    </script>
 </body>
 </html>
