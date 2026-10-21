@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مواقع النشاطات</title>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* تصميم الأزرار الفخم والمجسم */
+        .my-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 32px;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #4CAF50, #388E3C);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4), 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        /* زر علوم بلون مميز (أزرق فخم) */
+        .my-btn.science-btn {
+            background: linear-gradient(145deg, #2196F3, #1976D2);
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4), 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* تأثير عند مرور الماوس (Hover) */
+        .my-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+        }
+
+        /* تأثير عند الضغط على الزر (Active) */
+        .my-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🚀 مرحباً بكم في موقع النشاطات 🚀</h1>
+
+    <div class="buttons-container">
+        <!-- الزر الأول -->
+        <a href="index.html" target="_blank" class="my-btn">🌐 فتح أول موقع</a>
+
+        <!-- الزر الثاني -->
+        <a href="index2.html" target="_blank" class="my-btn science-btn">🔬 فتح نشاط علوم</a>
+    </div>
+
+</body>
+</html>
