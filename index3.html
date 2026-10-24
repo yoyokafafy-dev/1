@@ -1,0 +1,2958 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="نشاط الحج التعليمي التفاعلي - تم صنعه باشتراك مع طلاب فصل 4/6 ب في مدرسة رياض خاصة: يوسف ياسر، مالك أمير، أحمد محمد شفيق.">
+  <meta name="keywords" content="الحج, نشاط الحج, الكعبة المشرفة, الطواف, التلبية, مدرسة رياض خاصة">
+  <meta property="og:title" content="نشاط الحج - مدرسة رياض خاصة">
+  <meta property="og:description" content="نشاط الحج التفاعلي - عمل طلاب فصل 4/6 ب: يوسف ياسر، مالك أمير، أحمد محمد شفيق. محاكاة الطواف والتلبية المباركة.">
+  <meta property="og:image" content="kaaba_thumbnail.jpg">
+  
+  <title>نشاط الحج</title>
+
+  <!-- Google Fonts: Cairo & Amiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. متغيرات الألوان والتصميم الأساسي (CSS Variables & Global Styles)
+       ========================================================================== */
+    :root {
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark: #997a15;
+      --gold-gradient: linear-gradient(135deg, #dfb15b 0%, #c99738 50%, #8c671b 100%);
+      --gold-glow: 0 0 25px rgba(212, 175, 55, 0.45);
+      
+      --black-deep: #0d0f12;
+      --black-surface: #15181e;
+      --black-card: #1c2027;
+      --black-border: #2c323d;
+      
+      --white-pure: #ffffff;
+      --cream-bg: #fcfbf7;
+      --cream-surface: #f7f4ea;
+      --cream-card: #ffffff;
+      --cream-border: #e6dfce;
+      
+      --marble-white: #f8f9fa;
+      --gray-light: #ecefe6;
+      --gray-text: #6c757d;
+      --dark-text: #1a1e24;
+      
+      --emerald: #1b4332;
+      --emerald-light: #2d6a4f;
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 16px 40px rgba(212, 175, 55, 0.2);
+      --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    /* أنماط الوضع الليلي / الروحاني */
+    body.night-mode {
+      --cream-bg: #0d0f13;
+      --cream-surface: #14171d;
+      --cream-card: #1a1e26;
+      --cream-border: #2d3340;
+      --dark-text: #f0f2f5;
+      --gray-text: #9ba3af;
+      --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.6);
+      color: #f0f2f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+      background-color: var(--cream-bg);
+      color: var(--dark-text);
+      line-height: 1.8;
+      overflow-x: hidden;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+      position: relative;
+    }
+
+    .amiri-font {
+      font-family: 'Amiri', 'Traditional Arabic', serif;
+    }
+
+    /* خلفية الزخرفة الإسلامية الهندسية الخفيفة */
+    .islamic-pattern-bg {
+      background-image: 
+        radial-gradient(var(--gold-light) 0.75px, transparent 0.75px),
+        radial-gradient(var(--gold-light) 0.75px, var(--cream-bg) 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      background-attachment: fixed;
+    }
+
+    body.night-mode .islamic-pattern-bg {
+      background-image: 
+        radial-gradient(rgba(212, 175, 55, 0.15) 0.75px, transparent 0.75px),
+        radial-gradient(rgba(212, 175, 55, 0.15) 0.75px, var(--cream-bg) 0.75px);
+    }
+
+    /* حاوية العرض العامة */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    /* ==========================================================================
+       2. شريط التنبيه العلوي وزر التشغيل التلقائي (Autoplay Alert Banner)
+       ========================================================================== */
+    .autoplay-banner {
+      background: linear-gradient(90deg, #15181e 0%, #1f2530 50%, #15181e 100%);
+      color: var(--gold-light);
+      border-bottom: 2px solid var(--gold-primary);
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      transition: transform var(--transition-normal), opacity var(--transition-normal);
+    }
+
+    .autoplay-banner.hidden {
+      display: none;
+    }
+
+    .banner-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .pulse-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      color: var(--black-deep);
+      animation: sound-pulse 1.8s infinite;
+    }
+
+    @keyframes sound-pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+      70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    }
+
+    .btn-banner-play {
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      border: none;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--gold-glow);
+      transition: all var(--transition-normal);
+      white-space: nowrap;
+    }
+
+    .btn-banner-play:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    }
+
+    /* ==========================================================================
+       3. رأس الصفحة الترحيبي وبيانات الطلاب والمدرسة (Hero Header)
+       ========================================================================== */
+    .hero-header {
+      position: relative;
+      background: linear-gradient(180deg, rgba(20, 24, 32, 0.97) 0%, rgba(13, 15, 18, 0.98) 100%),
+                  radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+      color: #ffffff;
+      padding: 60px 20px 80px;
+      text-align: center;
+      border-bottom: 4px solid var(--gold-primary);
+      overflow: hidden;
+    }
+
+    /* إطار زخرفي إسلامي علوي */
+    .hero-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--gold-light) 25%, 
+        var(--gold-primary) 50%, 
+        var(--gold-light) 75%, 
+        transparent 100%);
+    }
+
+    .islamic-arch-ornament {
+      width: 70px;
+      height: 35px;
+      margin: 0 auto 15px;
+      fill: var(--gold-primary);
+      opacity: 0.9;
+    }
+
+    .page-title {
+      font-family: 'Amiri', serif;
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(212, 175, 55, 0.35);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .page-title span {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* شريط الوصف المطلوب نصياً */
+    .school-description-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 10px 24px;
+      border-radius: var(--radius-full);
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(5px);
+    }
+
+    /* بطاقات الطلاب المشاركين */
+    .students-honor-container {
+      margin-top: 10px;
+    }
+
+    .students-title {
+      font-size: 1.05rem;
+      color: #b0b8c4;
+      margin-bottom: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .students-title::before,
+    .students-title::after {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: rgba(212, 175, 55, 0.5);
+    }
+
+    .students-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .student-badge-card {
+      background: linear-gradient(145deg, rgba(28, 33, 43, 0.9) 0%, rgba(18, 21, 28, 0.95) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: var(--radius-md);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all var(--transition-normal);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .student-badge-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-primary);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+    }
+
+    .student-icon-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+    }
+
+    .student-info {
+      text-align: right;
+    }
+
+    .student-name {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+
+    .student-role {
+      font-size: 0.8rem;
+      color: var(--gold-light);
+    }
+
+    /* شريط التنقل السريع */
+    .quick-nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+
+    .nav-pill-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e5e9f0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-normal);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-pill-btn:hover {
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       4. مشغل التلبية التفاعلي الكامل (Talbiyah Audio Player Bar)
+       ========================================================================== */
+    .talbiyah-section {
+      margin-top: -35px;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 50px;
+    }
+
+    .audio-player-card {
+      background: linear-gradient(145deg, #181c24 0%, #101216 100%);
+      border: 2px solid var(--gold-primary);
+      border-radius: var(--radius-lg);
+      padding: 24px 30px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), var(--gold-glow);
+      color: #ffffff;
+    }
+
+    .talbiyah-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 14px;
+    }
+
+    .talbiyah-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .talbiyah-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .talbiyah-heading {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--gold-light);
+    }
+
+    .talbiyah-subheading {
+      font-size: 0.85rem;
+      color: #9ba3af;
+    }
+
+    .reciter-selector-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reciter-selector-label {
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .reciter-select {
+      background: #232834;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .reciter-select:focus {
+      border-color: var(--gold-primary);
+    }
+
+    /* نص التلبية المباركة المكتوب */
+    .talbiyah-text-display {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed rgba(212, 175, 55, 0.35);
+      border-radius: var(--radius-md);
+      padding: 18px 24px;
+      text-align: center;
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .talbiyah-arabic-script {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.25rem, 3.2vw, 1.85rem);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 2;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .talbiyah-arabic-script .highlight-phrase {
+      color: var(--gold-light);
+      transition: color 0.3s;
+    }
+
+    /* أزرار وعناصر التحكم في الصوت */
+    .audio-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .playback-buttons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-audio-main {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transition: transform var(--transition-bounce), box-shadow var(--transition-normal);
+    }
+
+    .btn-audio-main:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 22px rgba(212, 175, 55, 0.7);
+    }
+
+    .btn-audio-secondary {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+    }
+
+    .btn-audio-secondary:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+    }
+
+    .progress-container {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .progress-bar-wrapper {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gold-gradient);
+      border-radius: var(--radius-full);
+      transition: width 0.1s linear;
+    }
+
+    .time-indicators {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: #9ba3af;
+      font-family: 'Cairo', monospace;
+    }
+
+    .volume-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .volume-slider {
+      width: 80px;
+      accent-color: var(--gold-primary);
+      cursor: pointer;
+    }
+
+    /* موجات الصوت المتحركة عند التشغيل */
+    .sound-waves {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 18px;
+      margin-inline-start: 10px;
+    }
+
+    .sound-waves span {
+      width: 3px;
+      background: var(--gold-primary);
+      border-radius: 2px;
+      animation: wave-bar 1.2s infinite ease-in-out;
+    }
+
+    .sound-waves.paused span {
+      animation-play-state: paused;
+      height: 4px !important;
+    }
+
+    .sound-waves span:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+    .sound-waves span:nth-child(2) { height: 16px; animation-delay: 0.3s; }
+    .sound-waves span:nth-child(3) { height: 10px; animation-delay: 0.5s; }
+    .sound-waves span:nth-child(4) { height: 14px; animation-delay: 0.2s; }
+
+    @keyframes wave-bar {
+      0%, 100% { height: 4px; }
+      50% { height: 18px; }
+    }
+
+    /* ==========================================================================
+       5. القسم الترحيبي وفضائل الحج (Welcome & Spiritual Significance)
+       ========================================================================== */
+    .section-spacing {
+      padding: 60px 0;
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 45px;
+      position: relative;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-dark);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 4px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    body.night-mode .section-badge {
+      color: var(--gold-light);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark-text);
+      margin-bottom: 12px;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .section-subtitle {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--gray-text);
+      font-size: 1.05rem;
+    }
+
+    .quran-ayah-box {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(27, 67, 50, 0.08) 100%);
+      border: 1px solid var(--gold-light);
+      border-right: 6px solid var(--gold-primary);
+      border-radius: var(--radius-md);
+      padding: 26px 32px;
+      margin-bottom: 40px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+
+    body.night-mode .quran-ayah-box {
+      background: rgba(212, 175, 55, 0.05);
+      border-color: rgba(212, 175, 55, 0.3);
+      border-right-color: var(--gold-primary);
+    }
+
+    .ayah-text {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 700;
+      color: var(--dark-text);
+      line-height: 2.2;
+      margin-bottom: 8px;
+    }
+
+    .ayah-ref {
+      font-size: 0.9rem;
+      color: var(--gold-dark);
+      font-weight: 700;
+    }
+
+    body.night-mode .ayah-ref {
+      color: var(--gold-light);
+    }
+
+    .welcome-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .info-card {
+      background: var(--cream-card);
+      border: 1px solid var(--cream-border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gold-gradient);
+    }
+
+    .info-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .info-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-sm);
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    body.night-mode .info-card-icon {
+      color: var(--gold-light);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
+    .info-card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--dark-text);
+    }
+
+    .info-card-text {
+      color: var(--gray-text);
+      font-size: 0.96rem;
+      line-height: 1.8;
+    }
+
+    /* ==========================================================================
+       6. المشهد البصري الرئيسي: الكعبة المشرفة ومحاكاة الطواف الحي
+          (Main Visual Design: Realistic Kaaba & Animated Tawaf)
+       ========================================================================== */
+    .tawaf-showcase-section {
+      background: linear-gradient(180deg, rgba(13, 15, 18, 0.98) 0%, rgba(20, 24, 32, 0.98) 100%);
+      color: #ffffff;
+      padding: 70px 20px;
+      border-radius: var(--radius-lg);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), var(--gold-glow);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 60px;
+    }
+
+    .tawaf-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      padding-bottom: 18px;
+    }
+
+    .tawaf-section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tawaf-controls-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-tawaf-action {
+      background: #232833;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #ffffff;
+      padding: 7px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-normal);
+    }
+
+    .btn-tawaf-action:hover, .btn-tawaf-action.active {
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    /* ساحة الطواف المركزية */
+    .mataf-arena-container {
+      position: relative;
+      width: 100%;
+      height: 580px;
+      border-radius: var(--radius-md);
+      background: radial-gradient(circle at center, #f4efe4 0%, #ded7c6 45%, #b5ab96 70%, #20242e 100%);
+      overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.8s ease;
+    }
+
+    .mataf-arena-container.night-ambience {
+      background: radial-gradient(circle at center, #2c3340 0%, #1a1e27 45%, #0f1217 75%, #090a0d 100%);
+    }
+
+    /* لوحة الكانفاس للمحاكاة الحية الدقيقة للطائفين */
+    #tawafCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    /* مجسم الكعبة المشرفة الواقعي بتقنية CSS ثلاثية الأبعاد والأيقونات التفاعلية */
+    .kaaba-centerpiece {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      z-index: 10;
+      pointer-events: auto;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+    }
+
+    /* مكعب الكعبة ثلاثي الأبعاد الواقعي */
+    .kaaba-cube-realistic {
+      width: 100%;
+      height: 100%;
+      background: #111317;
+      border-radius: 4px;
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.7),
+        0 0 0 2px #1f2229;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #333;
+    }
+
+    /* حزام الكعبة الذهبي المطرز بالآيات */
+    .kiswah-belt {
+      position: absolute;
+      top: 24px;
+      left: 0;
+      right: 0;
+      height: 16px;
+      background: linear-gradient(90deg, #b8860b 0%, #ffd700 30%, #daa520 60%, #ffd700 100%);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      border-top: 1px solid #ffe066;
+      border-bottom: 1px solid #996515;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      color: #3b2a05;
+      font-weight: 900;
+      letter-spacing: 1px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    /* باب الكعبة الذهبي */
+    .kaaba-door-golden {
+      position: absolute;
+      bottom: 14px;
+      right: 22px;
+      width: 24px;
+      height: 48px;
+      background: linear-gradient(135deg, #ffd700 0%, #b8860b 50%, #fff099 100%);
+      border: 1.5px solid #fff5cc;
+      border-radius: 2px;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.8), inset 0 0 5px rgba(0,0,0,0.4);
+      cursor: pointer;
+      z-index: 12;
+      transition: transform 0.2s;
+    }
+
+    .kaaba-door-golden:hover {
+      transform: scale(1.15);
+    }
+
+    /* الحجر الأسود في الركن الشرقي */
+    .black-stone-corner {
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      width: 18px;
+      height: 18px;
+      background: #000000;
+      border: 2px solid #e0e0e0;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 20px var(--gold-primary);
+      cursor: pointer;
+      z-index: 14;
+      animation: stone-beacon 2s infinite;
+    }
+
+    @keyframes stone-beacon {
+      0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 18px rgba(212,175,55,0.7); }
+      50% { box-shadow: 0 0 18px rgba(255,255,255,1), 0 0 30px rgba(212,175,55,1); }
+    }
+
+    /* خط بداية الطواف (شعاع ضوئي أخضر/ذهبي من الحجر الأسود) */
+    .tawaf-start-line {
+      position: absolute;
+      bottom: 4px;
+      right: -130px;
+      width: 130px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(46, 204, 113, 0.8) 50%, #ffd700 100%);
+      box-shadow: 0 0 8px #2ecc71;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* ميزاب الرحمة الذهبي */
+    .mizab-golden {
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 7px;
+      background: #ffd700;
+      border: 1px solid #fff;
+      box-shadow: 0 0 8px rgba(255,215,0,0.9);
+      cursor: pointer;
+      z-index: 13;
+    }
+
+    /* حجر إسماعيل (الحطيم) - قوس رخامي أبيض نصف دائري */
+    .hijr-ismail-arc {
+      position: absolute;
+      top: -38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 40px;
+      border: 4px solid #ffffff;
+      border-bottom: none;
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      z-index: 8;
+    }
+
+    /* مقام إبراهيم عليه السلام */
+    .maqam-ibrahim-spot {
+      position: absolute;
+      bottom: 24px;
+      right: -55px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffe066 30%, #b8860b 80%);
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 14px rgba(255, 215, 0, 0.8);
+      cursor: pointer;
+      z-index: 12;
+      transition: transform 0.2s;
+    }
+
+    .maqam-ibrahim-spot:hover {
+      transform: scale(1.2);
+    }
+
+    /* مؤشر اتجاه الطواف */
+    .tawaf-direction-hud {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      background: rgba(13, 15, 18, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      color: #ffffff;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 20;
+      backdrop-filter: blur(6px);
+    }
+
+    .tawaf-rotate-symbol {
+      display: inline-block;
+      font-size: 1.2rem;
+      color: var(--gold-light);
+      animation: rotate-counter-clockwise 4s linear infinite;
+    }
+
+    @keyframes rotate-counter-clockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    /* حلقات الطواف الدائرية المتحركة بواسطة CSS Animations */
+    .css-tawaf-orbit-layer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .css-tawaf-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: 1px dashed rgba(212, 175, 55, 0.18);
+      transform: translate(-50%, -50%);
+      animation: tawaf-circular-spin linear infinite;
+    }
+
+    .css-tawaf-ring.ring-inner {
+      width: 250px;
+      height: 220px;
+      animation-duration: 22s;
+    }
+
+    .css-tawaf-ring.ring-middle {
+      width: 340px;
+      height: 300px;
+      animation-duration: 32s;
+    }
+
+    .css-tawaf-ring.ring-outer {
+      width: 430px;
+      height: 380px;
+      animation-duration: 45s;
+    }
+
+    /* حركة الطواف الدائرية السلسة عكس اتجاه عقارب الساعة */
+    @keyframes tawaf-circular-spin {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+      }
+    }
+
+    .css-pilgrim-marker {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.35);
+    }
+
+    /* لوحة عداد الأشواط وأدعيتها */
+    .shawt-tracker-container {
+      margin-top: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .shawt-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .shawt-tab-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #d1d5db;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .shawt-tab-btn:hover, .shawt-tab-btn.active {
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .shawt-content-box {
+      background: rgba(13, 15, 18, 0.7);
+      border-radius: var(--radius-sm);
+      padding: 16px 22px;
+      text-align: center;
+      border-right: 4px solid var(--gold-primary);
+    }
+
+    .shawt-dua-text {
+      font-family: 'Amiri', serif;
+      font-size: 1.25rem;
+      color: var(--gold-light);
+      line-height: 1.9;
+      margin-bottom: 6px;
+    }
+
+    .shawt-instruction {
+      font-size: 0.85rem;
+      color: #9ba3af;
+    }
+
+    /* نافذة منبثقة تفاعلية لمعالم الكعبة */
+    .kaaba-info-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+      padding: 20px;
+    }
+
+    .kaaba-info-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #181c24;
+      border: 2px solid var(--gold-primary);
+      border-radius: var(--radius-md);
+      max-width: 500px;
+      width: 100%;
+      padding: 26px;
+      color: #ffffff;
+      position: relative;
+      box-shadow: var(--gold-glow);
+      transform: translateY(20px);
+      transition: transform var(--transition-bounce);
+    }
+
+    .kaaba-info-modal.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .btn-close-modal {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: background var(--transition-normal);
+    }
+
+    .btn-close-modal:hover {
+      background: #e63946;
+    }
+
+    .modal-title {
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .modal-body {
+      font-size: 0.98rem;
+      color: #d1d5db;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    /* صورة الكعبة المشرفة الواقعية المدرجة */
+    .kaaba-photo-feature-card {
+      background: var(--cream-card);
+      border: 1px solid var(--cream-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    @media (max-width: 850px) {
+      .kaaba-photo-feature-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kaaba-photo-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      min-height: 320px;
+    }
+
+    .kaaba-thumbnail-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .kaaba-photo-feature-card:hover .kaaba-thumbnail-image {
+      transform: scale(1.04);
+    }
+
+    .kaaba-photo-content {
+      padding: 35px;
+    }
+
+    .kaaba-photo-tag {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-dark);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    body.night-mode .kaaba-photo-tag {
+      color: var(--gold-light);
+    }
+
+    .kaaba-photo-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--dark-text);
+      margin-bottom: 14px;
+    }
+
+    .kaaba-photo-desc {
+      color: var(--gray-text);
+      font-size: 0.98rem;
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    /* ==========================================================================
+       7. شرح الطواف وأهميته خلال الحج (Explanation of Tawaf)
+       ========================================================================== */
+    .tawaf-explanation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .tawaf-step-card {
+      background: var(--cream-card);
+      border: 1px solid var(--cream-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      transition: all var(--transition-normal);
+    }
+
+    .tawaf-step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .step-number-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+
+    .step-card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark-text);
+      margin-bottom: 10px;
+    }
+
+    .step-card-desc {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      line-height: 1.75;
+    }
+
+    /* جدول أنواع الطواف */
+    .tawaf-types-table-wrap {
+      margin-top: 35px;
+      background: var(--cream-card);
+      border: 1px solid var(--cream-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .tawaf-types-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: right;
+    }
+
+    .tawaf-types-table th {
+      background: linear-gradient(135deg, #1c2027 0%, #121418 100%);
+      color: var(--gold-light);
+      padding: 14px 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-bottom: 2px solid var(--gold-primary);
+    }
+
+    .tawaf-types-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--cream-border);
+      color: var(--dark-text);
+      font-size: 0.94rem;
+    }
+
+    .tawaf-types-table tr:hover td {
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    /* ==========================================================================
+       8. خط الزمان التعليمي لمناسك الحج (Hajj Journey Timeline)
+       ========================================================================== */
+    .timeline-container {
+      position: relative;
+      margin: 40px auto 0;
+      padding: 20px 0;
+    }
+
+    .timeline-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 28px;
+      width: 4px;
+      background: linear-gradient(180deg, var(--gold-primary) 0%, var(--emerald) 100%);
+      border-radius: var(--radius-full);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 35px;
+      padding-right: 70px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-node {
+      position: absolute;
+      right: 14px;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+      z-index: 2;
+    }
+
+    .timeline-card {
+      background: var(--cream-card);
+      border: 1px solid var(--cream-border);
+      border-radius: var(--radius-md);
+      padding: 22px 26px;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition-normal);
+    }
+
+    .timeline-card:hover {
+      transform: translateX(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .timeline-day-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: var(--radius-full);
+      margin-bottom: 8px;
+    }
+
+    body.night-mode .timeline-day-badge {
+      color: var(--gold-light);
+    }
+
+    .timeline-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--dark-text);
+      margin-bottom: 8px;
+    }
+
+    .timeline-desc {
+      color: var(--gray-text);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    /* ==========================================================================
+       9. نشاط اختبر معلوماتك التفاعلي (Interactive Educational Quiz)
+       ========================================================================== */
+    .quiz-section-wrap {
+      background: linear-gradient(145deg, #181d26 0%, #101319 100%);
+      border: 1px solid var(--gold-primary);
+      border-radius: var(--radius-lg);
+      padding: 40px 30px;
+      color: #ffffff;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      margin: 50px 0;
+    }
+
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .quiz-badge {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-light);
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .quiz-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .quiz-question-box {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .quiz-q-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--gold-light);
+    }
+
+    .quiz-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quiz-option-btn {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 12px 18px;
+      border-radius: var(--radius-sm);
+      text-align: right;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .quiz-option-btn:hover {
+      background: rgba(212, 175, 55, 0.18);
+      border-color: var(--gold-primary);
+    }
+
+    .quiz-option-btn.correct {
+      background: #2d6a4f !important;
+      border-color: #52b788 !important;
+      color: #ffffff !important;
+    }
+
+    .quiz-option-btn.wrong {
+      background: #780000 !important;
+      border-color: #c1121f !important;
+      color: #ffffff !important;
+    }
+
+    .quiz-feedback {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .quiz-score-badge {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    /* ==========================================================================
+       10. تذييل الصفحة وبطاقة التكريم والبيانات المدرسية (Footer & Honor Section)
+       ========================================================================== */
+    .school-honor-section {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(20, 24, 32, 0.05) 100%);
+      border: 2px dashed var(--gold-primary);
+      border-radius: var(--radius-lg);
+      padding: 35px;
+      margin: 50px 0 30px;
+      text-align: center;
+    }
+
+    .honor-crest {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    .honor-heading {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--dark-text);
+      margin-bottom: 10px;
+    }
+
+    .honor-desc {
+      max-width: 650px;
+      margin: 0 auto 20px;
+      color: var(--gray-text);
+      font-size: 1rem;
+    }
+
+    .site-footer {
+      background: #0d0f12;
+      color: #d1d5db;
+      padding: 45px 20px 25px;
+      border-top: 3px solid var(--gold-primary);
+      margin-top: 50px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-school-info h3 {
+      color: var(--gold-light);
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .footer-school-info p {
+      font-size: 0.9rem;
+      color: #9ba3af;
+    }
+
+    .footer-students-summary {
+      text-align: left;
+    }
+
+    .footer-students-summary h4 {
+      color: var(--gold-light);
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .footer-students-summary p {
+      font-size: 0.9rem;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    /* زر العودة لأعلى وزر تبديل الوضع */
+    .floating-buttons-group {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 990;
+    }
+
+    .btn-floating {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #181d26;
+      color: var(--gold-light);
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all var(--transition-normal);
+      text-decoration: none;
+    }
+
+    .btn-floating:hover {
+      background: var(--gold-gradient);
+      color: #0c0d10;
+      transform: scale(1.1);
+    }
+
+    /* تجاوب التصميم مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .hero-header {
+        padding: 40px 15px 60px;
+      }
+      .students-grid {
+        flex-direction: column;
+        width: 100%;
+      }
+      .student-badge-card {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .mataf-arena-container {
+        height: 440px;
+      }
+      .kaaba-centerpiece {
+        width: 100px;
+        height: 100px;
+      }
+      .kiswah-belt {
+        top: 18px;
+        height: 12px;
+        font-size: 6px;
+      }
+      .kaaba-door-golden {
+        width: 18px;
+        height: 38px;
+        bottom: 10px;
+        right: 16px;
+      }
+      .hijr-ismail-arc {
+        width: 70px;
+        height: 32px;
+        top: -30px;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-students-summary {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body class="islamic-pattern-bg">
+
+  <!-- ==========================================================================
+       شريط التنبيه العلوي لتشغيل التلبية إذا حجب المتصفح التشغيل التلقائي
+       ========================================================================== -->
+  <div id="autoplayBanner" class="autoplay-banner">
+    <div class="banner-text">
+      <span class="pulse-icon">📢</span>
+      <span>مرحباً بكم في نشاط الحج | استمع إلى التلبية المباركة بصوت نقي وعذب:</span>
+    </div>
+    <button id="bannerPlayBtn" class="btn-banner-play" onclick="handleManualAudioStart()">
+      <span>🔊 تشغيل التلبية</span>
+    </button>
+  </div>
+
+  <!-- ==========================================================================
+       1. رأس الصفحة وبيانات النشاط والطلاب المشاركين
+       ========================================================================== -->
+  <header class="hero-header">
+    <div class="container">
+      
+      <!-- حلية معمارية إسلامية -->
+      <svg class="islamic-arch-ornament" viewBox="0 0 100 50">
+        <path d="M 0,50 Q 50,-20 100,50 L 95,50 Q 50,-10 5,50 Z" />
+        <circle cx="50" cy="18" r="4" />
+      </svg>
+
+      <!-- العنوان الرئيسي المحدد نصياً -->
+      <h1 class="page-title">نشاط الحج</h1>
+
+      <!-- الوصف المحدد نصياً -->
+      <div class="school-description-badge">
+        تم صنعه باشتراك مع طلاب فصل 4/6 ب في مدرسة رياض خاصة
+      </div>
+
+      <!-- أسماء الطلاب المشاركين المحددة نصياً -->
+      <div class="students-honor-container">
+        <div class="students-title">
+          <span>الطلاب المبدعون المشاركون في إعداد النشاط</span>
+        </div>
+
+        <div class="students-grid">
+          <!-- الطالب 1: يوسف ياسر -->
+          <div class="student-badge-card">
+            <div class="student-icon-circle">١</div>
+            <div class="student-info">
+              <div class="student-name">يوسف ياسر</div>
+              <div class="student-role">فصل 4/6 ب • مدرسة رياض خاصة</div>
+            </div>
+          </div>
+
+          <!-- الطالب 2: مالك أمير -->
+          <div class="student-badge-card">
+            <div class="student-icon-circle">٢</div>
+            <div class="student-info">
+              <div class="student-name">مالك أمير</div>
+              <div class="student-role">فصل 4/6 ب • مدرسة رياض خاصة</div>
+            </div>
+          </div>
+
+          <!-- الطالب 3: أحمد محمد شفيق -->
+          <div class="student-badge-card">
+            <div class="student-icon-circle">٣</div>
+            <div class="student-info">
+              <div class="student-name">أحمد محمد شفيق</div>
+              <div class="student-role">فصل 4/6 ب • مدرسة رياض خاصة</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- روابط التنقل السريع بالأقسام -->
+      <nav class="quick-nav-bar">
+        <a href="#tawaf-sim" class="nav-pill-btn">🕋 محاكاة الطواف الحي</a>
+        <a href="#talbiyah-card" class="nav-pill-btn">🔊 التلبية المباركة</a>
+        <a href="#about-hajj" class="nav-pill-btn">📖 فضل الحج ومناسكه</a>
+        <a href="#tawaf-guide" class="nav-pill-btn">🔄 أحكام الطواف</a>
+        <a href="#hajj-quiz" class="nav-pill-btn">❓ اختبر معلوماتك</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       3. مشغل التلبية التفاعلي المتقدم (Talbiyah Audio Player)
+       ========================================================================== -->
+  <section id="talbiyah-card" class="container talbiyah-section">
+    <div class="audio-player-card">
+      
+      <div class="talbiyah-header-row">
+        <div class="talbiyah-title-group">
+          <div class="talbiyah-icon">🕋</div>
+          <div>
+            <div class="talbiyah-heading">
+              تلبية الحج المباركة
+              <div class="sound-waves paused" id="soundWaves">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="talbiyah-subheading">بصوت عذب ندي لضيوف الرحمن في المشاعر المقدسة</div>
+          </div>
+        </div>
+
+        <div class="reciter-selector-wrap">
+          <label for="reciterSelect" class="reciter-selector-label">صوت القارئ:</label>
+          <select id="reciterSelect" class="reciter-select" onchange="changeReciter(this.value)">
+            <option value="talbiyah_ghamidi.mp3" selected>الشيخ سعد الغامدي (تلبية الحرم كاملة)</option>
+            <option value="talbiyah_group.mp3">التلبية الجماعية لحجاج بيت الله الحرام</option>
+            <option value="talbiyah_sudais.mp3">الشيخ عبد الرحمن السديس (إمام الحرم المكي)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- نص التلبية المطلوب نصياً -->
+      <div class="talbiyah-text-display">
+        <p class="talbiyah-arabic-script">
+          « <span class="highlight-phrase">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</span>، 
+          <span class="highlight-phrase">لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ</span>، 
+          <span class="highlight-phrase">إِنَّ الحَمْدَ وَالنِّعْمَةَ لَكَ وَالمُلْك</span>، 
+          <span class="highlight-phrase">لاَ شَرِيكَ لَكَ</span> »
+        </p>
+      </div>
+
+      <!-- عناصر التحكم في الصوت -->
+      <div class="audio-controls-row">
+        
+        <div class="playback-buttons">
+          <!-- زر التشغيل / الإيقاف الرئيسي -->
+          <button id="mainPlayPauseBtn" class="btn-audio-main" onclick="toggleAudioPlay()" title="تشغيل / إيقاف مؤقت">
+            <span id="playIcon">▶</span>
+          </button>
+          
+          <!-- زر إعادة التلبية من البداية -->
+          <button class="btn-audio-secondary" onclick="restartAudio()" title="إعادة التلبية من البداية">
+            ↺
+          </button>
+        </div>
+
+        <!-- شريط التقدم الزمني -->
+        <div class="progress-container">
+          <div class="progress-bar-wrapper" id="progressWrapper" onclick="seekAudio(event)">
+            <div class="progress-bar-fill" id="progressBar"></div>
+          </div>
+          <div class="time-indicators">
+            <span id="currentTimeDisplay">00:00</span>
+            <span id="durationDisplay">--:--</span>
+          </div>
+        </div>
+
+        <!-- مستوى الصوت -->
+        <div class="volume-controls">
+          <button class="btn-audio-secondary" onclick="toggleMute()" id="muteBtn" title="كتم / تشغيل الصوت">
+            🔊
+          </button>
+          <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.05" value="0.9" oninput="changeVolume(this.value)" title="مستوى الصوت">
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- عنصر الصوت HTML5 الفعلي مع مصادر متعددة وبدائل احتياطية -->
+  <audio id="hajjAudio" preload="auto" loop>
+    <source src="talbiyah.mp3" type="audio/mpeg">
+    <source src="talbiyah_ghamidi.mp3" type="audio/mpeg">
+    <!-- بديل على الإنترنت في حال نقل الملف بدون المرفقات الصوتية -->
+    <source src="https://archive.org/download/labaika_lahoma_labaik_haj/labaika_ghamidi.mp3" type="audio/mpeg">
+    متصفحك لا يدعم تشغيل الملفات الصوتية.
+  </audio>
+
+  <!-- ==========================================================================
+       4. المشهد البصري الرئيسي: الكعبة المشرفة ومحاكاة الطواف الحي
+          (Realistic Holy Kaaba & Animated Tawaf Simulation)
+       ========================================================================== -->
+  <main class="container">
+    
+    <section id="tawaf-sim" class="tawaf-showcase-section">
+      
+      <div class="tawaf-top-bar">
+        <div class="tawaf-section-title">
+          <span>🕋</span>
+          <span>محاكاة الطواف حول الكعبة المشرفة</span>
+        </div>
+
+        <div class="tawaf-controls-bar">
+          <button id="toggleTawafBtn" class="btn-tawaf-action" onclick="toggleTawafAnimation()">
+            <span id="tawafBtnIcon">⏸</span>
+            <span id="tawafBtnText">إيقاف الحركة</span>
+          </button>
+
+          <button id="speedTawafBtn" class="btn-tawaf-action" onclick="cycleTawafSpeed()">
+            ⚡ السرعة: <span id="speedLabel">عادي</span>
+          </button>
+
+          <button id="ambienceBtn" class="btn-tawaf-action" onclick="toggleMatafAmbience()">
+            🌙 <span id="ambienceLabel">وضع الليل</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ساحة الطواف التفاعلية -->
+      <div id="matafArena" class="mataf-arena-container" title="اضغط على معالم الكعبة لاستكشافها">
+        
+        <!-- كانفاس الطائفين المتحرك في حلقات دائرية عكس عقارب الساعة -->
+        <canvas id="tawafCanvas"></canvas>
+
+        <!-- طبقات حركات الطواف الدائرية المبنية بـ CSS Animations الخالصة -->
+        <div class="css-tawaf-orbit-layer">
+          <!-- الحلقة الداخلية -->
+          <div class="css-tawaf-ring ring-inner">
+            <div class="css-pilgrim-marker" style="top: -4px; left: 50%;"></div>
+            <div class="css-pilgrim-marker" style="bottom: -4px; left: 50%;"></div>
+            <div class="css-pilgrim-marker" style="left: -4px; top: 50%;"></div>
+            <div class="css-pilgrim-marker" style="right: -4px; top: 50%;"></div>
+          </div>
+          <!-- الحلقة الوسطى -->
+          <div class="css-tawaf-ring ring-middle">
+            <div class="css-pilgrim-marker" style="top: 15%; left: 15%;"></div>
+            <div class="css-pilgrim-marker" style="top: 15%; right: 15%;"></div>
+            <div class="css-pilgrim-marker" style="bottom: 15%; left: 15%;"></div>
+            <div class="css-pilgrim-marker" style="bottom: 15%; right: 15%;"></div>
+            <div class="css-pilgrim-marker" style="top: -4px; left: 50%;"></div>
+            <div class="css-pilgrim-marker" style="bottom: -4px; left: 50%;"></div>
+          </div>
+          <!-- الحلقة الخارجية -->
+          <div class="css-tawaf-ring ring-outer">
+            <div class="css-pilgrim-marker" style="top: -4px; left: 50%;"></div>
+            <div class="css-pilgrim-marker" style="bottom: -4px; left: 50%;"></div>
+            <div class="css-pilgrim-marker" style="left: -4px; top: 50%;"></div>
+            <div class="css-pilgrim-marker" style="right: -4px; top: 50%;"></div>
+            <div class="css-pilgrim-marker" style="top: 20%; left: 10%;"></div>
+            <div class="css-pilgrim-marker" style="bottom: 20%; right: 10%;"></div>
+          </div>
+        </div>
+
+        <!-- مجسم الكعبة المشرفة في المركز -->
+        <div class="kaaba-centerpiece">
+          
+          <!-- مكعب الكعبة مع الكسوة المطرزة -->
+          <div class="kaaba-cube-realistic" onclick="showKaabaInfo('kaaba')">
+            
+            <!-- حزام الكعبة الذهبي المطرز -->
+            <div class="kiswah-belt" title="حزام الكعبة المشرفة">
+              سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ
+            </div>
+
+            <!-- باب الكعبة الذهبي -->
+            <div class="kaaba-door-golden" onclick="event.stopPropagation(); showKaabaInfo('door')" title="باب الكعبة المشرفة الذهبي"></div>
+
+            <!-- ميزاب الرحمة -->
+            <div class="mizab-golden" onclick="event.stopPropagation(); showKaabaInfo('mizab')" title="ميزاب الرحمة"></div>
+
+            <!-- الحجر الأسود في الركن الشرقي -->
+            <div class="black-stone-corner" onclick="event.stopPropagation(); showKaabaInfo('hajar')" title="الحجر الأسود - نقطة بداية ونهاية الطواف"></div>
+
+            <!-- خط بداية الطواف -->
+            <div class="tawaf-start-line"></div>
+          </div>
+
+          <!-- حجر إسماعيل (الحطيم) - قوس رخامي أبيض -->
+          <div class="hijr-ismail-arc" onclick="event.stopPropagation(); showKaabaInfo('hateem')" title="حجر إسماعيل (الحطيم)"></div>
+
+          <!-- مقام إبراهيم عليه السلام -->
+          <div class="maqam-ibrahim-spot" onclick="event.stopPropagation(); showKaabaInfo('maqam')" title="مقام إبراهيم عليه السلام"></div>
+
+        </div>
+
+        <!-- مؤشر اتجاه الدوران في الطواف -->
+        <div class="tawaf-direction-hud">
+          <span class="tawaf-rotate-symbol">↺</span>
+          <span>طواف عكس عقارب الساعة (الكعبة عن يسار الطائف)</span>
+        </div>
+
+      </div>
+
+      <!-- شريط متابعة أشواط الطواف وأدعيتها المستحبة -->
+      <div class="shawt-tracker-container">
+        <div class="shawt-tabs">
+          <button class="shawt-tab-btn active" onclick="selectShawt(1)">الشوط الأول</button>
+          <button class="shawt-tab-btn" onclick="selectShawt(2)">الشوط الثاني</button>
+          <button class="shawt-tab-btn" onclick="selectShawt(3)">الشوط الثالث</button>
+          <button class="shawt-tab-btn" onclick="selectShawt(4)">الشوط الرابع</button>
+          <button class="shawt-tab-btn" onclick="selectShawt(5)">الشوط الخامس</button>
+          <button class="shawt-tab-btn" onclick="selectShawt(6)">الشوط السادس</button>
+          <button class="shawt-tab-btn" onclick="selectShawt(7)">الشوط السابع</button>
+        </div>
+
+        <div class="shawt-content-box">
+          <div class="shawt-dua-text" id="shawtDuaDisplay">
+            « بِسْمِ اللَّهِ، وَاللَّهُ أَكْبَرُ، اللَّهُمَّ إِيمَانًا بِكَ، وَتَصْدِيقًا بِكِتَابِكَ، وَوَفَاءً بِعَهْدِكَ، وَاتِّبَاعًا لِسُنَّةِ نَبِيِّكَ مُحَمَّدٍ ﷺ »
+          </div>
+          <div class="shawt-instruction" id="shawtNoteDisplay">
+            يبدأ الطواف من محاذاة الحجر الأسود بالتكبير، ويستحب الرمل (الإسراع في المشي) في الأشواط الثلاثة الأولى للرجال.
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         صورة الكعبة المشرفة الواقعية مع النص البديل بالعربية
+         (Realistic Kaaba Image Showcase & Alt Description)
+         ========================================================================== -->
+    <section class="kaaba-photo-feature-card">
+      <div class="kaaba-photo-img-wrap">
+        <!-- الصورة المرفقة المطلوبة في النشاط مع وصف بديل باللغة العربية -->
+        <img 
+          src="kaaba_thumbnail.jpg" 
+          alt="الكعبة المشرفة في المسجد الحرام بمكة المكرمة" 
+          class="kaaba-thumbnail-image"
+          loading="lazy"
+          onerror="this.onerror=null; this.src='https://archive.org/download/KaabaMasjidAlHaramMecca/Kaaba.jpg';"
+        >
+      </div>
+
+      <div class="kaaba-photo-content">
+        <span class="kaaba-photo-tag">قبلة المسلمين ومعلم التوحيد الخالد</span>
+        <h2 class="kaaba-photo-title">الكعبة المشرفة وبيت الله الحرام</h2>
+        <p class="kaaba-photo-desc">
+          الكعبة المشرفة هي أول بيت وُضع للناس في الأرض لعبادة الله وحده لا شريك له، بناها خليل الله إبراهيم وابنه إسماعيل عليهما السلام، وتتوسط صحن المطاف بالمسجد الحرام في مكة المكرمة. يكسوها ثوب من الحرير الخالص الموشى بالذهب والفضة، وتتوجه إليها قلوب أكثر من ملياري مسلم حول العالم في كل صلاة.
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button class="btn-banner-play" onclick="showKaabaInfo('kaaba')">
+            🔍 استكشاف معالم الكعبة بالتفصيل
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         القسم التعليمي: رسالة ترحيبية وفضائل الحج
+         ========================================================================== -->
+    <section id="about-hajj" class="section-spacing">
+      
+      <div class="section-title-wrap">
+        <span class="section-badge">الركن الخامس من أركان الإسلام</span>
+        <h2 class="section-title">رسالة ترحيبية عن الحج وفضائله</h2>
+        <p class="section-subtitle">
+          رحلة العمر الروحانية التي تهفو إليها أفئدة المؤمنين، وتتجسد فيها معاني التوحيد والمساواة والامتثال لأمر رب العالمين.
+        </p>
+      </div>
+
+      <!-- الآية القرآنية الكريمة -->
+      <div class="quran-ayah-box">
+        <p class="ayah-text">
+          ﴿ وَأَذِّنْ فِي النَّاسِ بِالْحَجِّ يَأْتُوكَ رِجَالًا وَعَلَىٰ كُلِّ ضَامِرٍ يَأْتِينَ مِنْ كُلِّ فَجٍّ عَمِيقٍ • لِيَشْهَدُوا مَنَافِعَ لَهُمْ وَيَذْكُرُوا اسْمَ اللَّهِ فِي أَيَّامٍ مَعْلُومَاتٍ ﴾
+        </p>
+        <div class="ayah-ref">سورة الحج: الآيتان ٢٧ - ٢٨</div>
+      </div>
+
+      <div class="welcome-cards-grid">
+        
+        <div class="info-card">
+          <div class="info-card-icon">✨</div>
+          <h3 class="info-card-title">مغفرة الذنوب والولادة الجديدة</h3>
+          <p class="info-card-text">
+            الحج المبرور تطهير للروح ونقاء للسريرة؛ قال رسول الله ﷺ: «مَنْ حَجَّ لِلَّهِ فَلَمْ يَرْفُثْ، وَلَمْ يَفْسُقْ، رَجَعَ كَيَوْمِ وَلَدَتْهُ أُمُّهُ»، وقال ﷺ: «وَالْحَجُّ الْمَبْرُورُ لَيْسَ لَهُ جَزَاءٌ إِلَّا الْجَنَّةُ».
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">🤝</div>
+          <h3 class="info-card-title">وحدة الأمة الإسلامية والمساواة</h3>
+          <p class="info-card-text">
+            يجتمع في الحج ملايين المسلمين من كل بقاع الأرض، من مختلف الأجناس والألوان واللغات، يرتدون جميعاً زياً أبيض موحداً متجردين من مظاهر الدنيا، يقفون في صعيد واحد خاشعين لله الواحد القهار.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-icon">🕊️</div>
+          <h3 class="info-card-title">إحياء سنّة إبراهيم عليه السلام</h3>
+          <p class="info-card-text">
+            يستحضر الحاج في كل مشعر قصة التضحية والإخلاص لخليل الله إبراهيم وزوجه هاجر وابنه إسماعيل، من بناء البيت، والسعي بين الصفا والمروة، ورمي الجمرات، فكلها شعائر تزرع في النفس التسليم لله.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         شرح الطواف وأهميته وأحكامه
+         ========================================================================== -->
+    <section id="tawaf-guide" class="section-spacing">
+      
+      <div class="section-title-wrap">
+        <span class="section-badge">ركن أساسي من أركان الحج والعمرة</span>
+        <h2 class="section-title">شرح الطواف وأهميته في الحج</h2>
+        <p class="section-subtitle">
+          الطواف هو الدوران التعبدي حول الكعبة المشرفة، وهو صلاة يسبح فيها الطائف مع ملائكة السماء وحركة الكون في خضوع لله عز وجل.
+        </p>
+      </div>
+
+      <!-- خطوات أداء الطواف الصحيح -->
+      <div class="tawaf-explanation-grid">
+        
+        <div class="tawaf-step-card">
+          <div class="step-number-circle">١</div>
+          <h3 class="step-card-title">النية والطهارة</h3>
+          <p class="step-card-desc">
+            ينوي الحاج الطواف تقرباً لله تعالى، ويشترط للطواف الطهارة الكاملة من الحدثين الأصغر والأكبر وستر العورة، لأن الطواف بالبيت بمنزلة الصلاة.
+          </p>
+        </div>
+
+        <div class="tawaf-step-card">
+          <div class="step-number-circle">٢</div>
+          <h3 class="step-card-title">البداية من الحجر الأسود</h3>
+          <p class="step-card-desc">
+            يبدأ كل شوط من محاذاة الحجر الأسود؛ فيستلمه الحاج ويقبله إن تيسر دون إيذاء، أو يشير إليه بيده اليمنى قائلاً: «بِسْمِ اللَّهِ، وَاللَّهُ أَكْبَرُ».
+          </p>
+        </div>
+
+        <div class="tawaf-step-card">
+          <div class="step-number-circle">٣</div>
+          <h3 class="step-card-title">الدوران عكس عقارب الساعة</h3>
+          <p class="step-card-desc">
+            يجعل الطائف الكعبة المشرفة عن يساره ويدور حولها عكس اتجاه عقارب الساعة، ويكون طوافه خارج حجر إسماعيل، فمن طاف داخل الحجر لم يصح شوطه لأنه جزء من الكعبة.
+          </p>
+        </div>
+
+        <div class="tawaf-step-card">
+          <div class="step-number-circle">٤</div>
+          <h3 class="step-card-title">إتمام سبعة أشواط كاملة</h3>
+          <p class="step-card-desc">
+            يتم الحاج سبعة أشواط تامة متتالية، يكثر فيها من الذكر والدعاء وتلاوة القرآن، ويختم كل شوط بمحاذاة الحجر الأسود، ثم يصلي ركعتين خلف مقام إبراهيم.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- جدول أنواع الطواف في الحج -->
+      <div class="tawaf-types-table-wrap">
+        <table class="tawaf-types-table">
+          <thead>
+            <tr>
+              <th>نوع الطواف</th>
+              <th>وقته وحكمه</th>
+              <th>أهميته وفضله</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>طواف القدوم (طواف التحية)</strong></td>
+              <td>سنة للمفرد والقارن عند أول وصوله إلى مكة المكرمة.</td>
+              <td>تحية للبيت العتيق وإعلان لبدء مناسك الحج.</td>
+            </tr>
+            <tr>
+              <td><strong>طواف الإفاضة (طواف الزيارة / الفرض)</strong></td>
+              <td>ركن من أركان الحج لا يصح الحج إلا به، يؤدى يوم النحر بعد عرفة ومزدلفة.</td>
+              <td>هو الطواف الأعظم في الحج، وبه يتحلل الحاج التحلل الأكبر.</td>
+            </tr>
+            <tr>
+              <td><strong>طواف الوداع</strong></td>
+              <td>واجب على كل حاج قبل مغادرة مكة إلى بلده (ما عدا الحائض والنفساء).</td>
+              <td>يكون آخر عهد الحاج بالبيت الحرام امتثالاً لحديث النبي ﷺ.</td>
+            </tr>
+            <tr>
+              <td><strong>طواف التطوع</strong></td>
+              <td>مستحب في أي وقت من ليل أو نهار أثناء الإقامة بمكة.</td>
+              <td>من أعظم القربات؛ بكل خطوة يرفع الله بها درجة ويحط بها خطيئة.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         رحلة الحاج: مناسك الحج يوماً بيوم
+         ========================================================================== -->
+    <section class="section-spacing">
+      
+      <div class="section-title-wrap">
+        <span class="section-badge">مسار رحلة الحاج المباركة</span>
+        <h2 class="section-title">مناسك الحج خطوة بخطوة</h2>
+        <p class="section-subtitle">
+          تتبع الأيام الفاضلة من ذي الحجة التي يؤدي فيها ضيوف الرحمن أعظم مناسك العمر.
+        </p>
+      </div>
+
+      <div class="timeline-container">
+        
+        <!-- اليوم 1: التروية -->
+        <div class="timeline-item">
+          <div class="timeline-node">١</div>
+          <div class="timeline-card">
+            <span class="timeline-day-badge">٨ ذو الحجة • يوم التروية</span>
+            <h3 class="timeline-title">الإحرام والانطلاق للمبيت بمنى</h3>
+            <p class="timeline-desc">
+              يُحرم الحاج من مكانه، ويلبي قائلاً: «لبيك اللهم حجاً»، ثم يتجه إلى مِنى فيصلي بها الظهر والعصر والمغرب والعشاء وفجر يوم عرفة قصراً بلا جمع، ويبيت بها اتباعاً لسنة النبي ﷺ.
+            </p>
+          </div>
+        </div>
+
+        <!-- اليوم 2: عرفة -->
+        <div class="timeline-item">
+          <div class="timeline-node">٢</div>
+          <div class="timeline-card">
+            <span class="timeline-day-badge">٩ ذو الحجة • يوم عرفة (الركن الأعظم)</span>
+            <h3 class="timeline-title">الوقوف بصعيد عرفات والمبيت بمزدلفة</h3>
+            <p class="timeline-desc">
+              «الحج عرفة»؛ يقف الحجاج في عرفات متبتلين بالدعاء والتضرع من الزوال حتى غروب الشمس، ثم يفيضون بعد الغروب إلى مُزدلفة ويصلون بها المغرب والعشاء جمع تأخير، ويبيتون هناك ويلتقطون الحصى.
+            </p>
+          </div>
+        </div>
+
+        <!-- اليوم 3: يوم النحر -->
+        <div class="timeline-item">
+          <div class="timeline-node">٣</div>
+          <div class="timeline-card">
+            <span class="timeline-day-badge">١٠ ذو الحجة • يوم النحر وعيد الأضحى</span>
+            <h3 class="timeline-title">رمي جمرة العقبة والنحر والحلق وطواف الإفاضة</h3>
+            <p class="timeline-desc">
+              أعظم أيام الحج؛ يرمي الحاج جمرة العقبة الكبرى بسبع حصيات، ثم ينحر هديه، ويحلق شعره أو يقصره، ثم يفيض إلى الحرم ليطوف طواف الإفاضة ويسعى بين الصفا والمروة.
+            </p>
+          </div>
+        </div>
+
+        <!-- الأيام 4 و 5 و 6: أيام التشريق -->
+        <div class="timeline-item">
+          <div class="timeline-node">٤</div>
+          <div class="timeline-card">
+            <span class="timeline-day-badge">١١ و ١٢ و ١٣ ذو الحجة • أيام التشريق</span>
+            <h3 class="timeline-title">المبيت بمنى ورمي الجمرات الثلاث وطواف الوداع</h3>
+            <p class="timeline-desc">
+              يبيت الحاج ليالي التشريق بمنى، ويرمي كل يوم الجمرات الثلاث (الصغرى فالوسطى فالكبرى) بعد الزوال. وبعد انتهاء المناسك يودع مكة المكرمة بطواف الوداع قبل سفره.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         نشاط اختبر معلوماتك التفاعلي (Hajj Quiz)
+         ========================================================================== -->
+    <section id="hajj-quiz" class="quiz-section-wrap">
+      
+      <div class="quiz-header">
+        <span class="quiz-badge">نشاط تفاعلي مدرسي</span>
+        <h2 class="quiz-title">اختبر معلوماتك عن الحج والطواف</h2>
+        <p style="color: #9ba3af; margin-top: 6px;">أسئلة تعليمية شيقة أعدها طلاب فصل 4/6 ب لزملائهم وزوار النشاط</p>
+      </div>
+
+      <!-- السؤال 1 -->
+      <div class="quiz-question-box" id="q1">
+        <div class="quiz-q-title">١. كم عدد أشواط الطواف حول الكعبة المشرفة؟</div>
+        <div class="quiz-options-list">
+          <button class="quiz-option-btn" onclick="checkAnswer(1, 1, false)">أ) ٣ أشواط</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(1, 2, false)">ب) ٥ أشواط</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(1, 3, true)">ج) ٧ أشواط</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(1, 4, false)">د) ٩ أشواط</button>
+        </div>
+        <div class="quiz-feedback" id="feedback-1"></div>
+      </div>
+
+      <!-- السؤال 2 -->
+      <div class="quiz-question-box" id="q2">
+        <div class="quiz-q-title">٢. من أين يبدأ الحاج شوط الطواف حول الكعبة؟</div>
+        <div class="quiz-options-list">
+          <button class="quiz-option-btn" onclick="checkAnswer(2, 1, false)">أ) من عند مقام إبراهيم</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(2, 2, true)">ب) من محاذاة الحجر الأسود</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(2, 3, false)">ج) من عند ميزاب الرحمة</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(2, 4, false)">د) من داخل حجر إسماعيل</button>
+        </div>
+        <div class="quiz-feedback" id="feedback-2"></div>
+      </div>
+
+      <!-- السؤال 3 -->
+      <div class="quiz-question-box" id="q3">
+        <div class="quiz-q-title">٣. ما هو الركن الأعظم في الحج الذي قال عنه النبي ﷺ: «الحج ...»؟</div>
+        <div class="quiz-options-list">
+          <button class="quiz-option-btn" onclick="checkAnswer(3, 1, true)">أ) الوقوف بعرفة</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(3, 2, false)">ب) المبيت بمزدلفة</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(3, 3, false)">ج) المبيت بمنى</button>
+          <button class="quiz-option-btn" onclick="checkAnswer(3, 4, false)">د) رمي الجمار</button>
+        </div>
+        <div class="quiz-feedback" id="feedback-3"></div>
+      </div>
+
+      <div class="quiz-score-badge" id="quizScoreText">
+        النتيجة: أجب على الأسئلة لاكتساب نقاط المعرفة! 🌟
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         لوحة شكر وتكريم طلاب مدرسة رياض خاصة
+         ========================================================================== -->
+    <section class="school-honor-section">
+      <div class="honor-crest">🏆</div>
+      <h2 class="honor-heading">شكر وتقدير لمبدعي النشاط</h2>
+      <p class="honor-desc">
+        نتقدم بجزيل الشكر وفائق التقدير لفرسان فصل <strong>4/6 ب</strong> في <strong>مدرسة رياض خاصة</strong> على مشاركتهم الفاعلة وشغفهم الكبير في تصميم وتنفيذ هذا النشاط التعليمي والتفاعلي المتميز عن الركن الخامس من أركان الإسلام.
+      </p>
+
+      <div class="students-grid" style="margin-top: 15px;">
+        <div class="student-badge-card" style="background: rgba(255,255,255,0.9); color: #0c0d10;">
+          <div class="student-icon-circle">🌟</div>
+          <div class="student-info">
+            <div class="student-name" style="color: #0c0d10;">يوسف ياسر</div>
+            <div class="student-role" style="color: #555;">مشارك وباحث متميز • 4/6 ب</div>
+          </div>
+        </div>
+
+        <div class="student-badge-card" style="background: rgba(255,255,255,0.9); color: #0c0d10;">
+          <div class="student-icon-circle">🌟</div>
+          <div class="student-info">
+            <div class="student-name" style="color: #0c0d10;">مالك أمير</div>
+            <div class="student-role" style="color: #555;">مشارك وباحث متميز • 4/6 ب</div>
+          </div>
+        </div>
+
+        <div class="student-badge-card" style="background: rgba(255,255,255,0.9); color: #0c0d10;">
+          <div class="student-icon-circle">🌟</div>
+          <div class="student-info">
+            <div class="student-name" style="color: #0c0d10;">أحمد محمد شفيق</div>
+            <div class="student-role" style="color: #555;">مشارك وباحث متميز • 4/6 ب</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       النافذة المنبثقة التفاعلية لمعالم الكعبة المشرفة
+       ========================================================================== -->
+  <div id="kaabaModal" class="kaaba-info-modal" onclick="closeKaabaInfo()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="btn-close-modal" onclick="closeKaabaInfo()" title="إغلاق">✕</button>
+      <div id="modalIcon" style="font-size: 2.2rem; margin-bottom: 10px;">🕋</div>
+      <h3 id="modalTitle" class="modal-title">معلم من معالم الكعبة</h3>
+      <div id="modalBody" class="modal-body">
+        شرح تفصيلي عن هذا المعلم الإسلامي العظيم وتاريخه وفضله.
+      </div>
+      <button class="btn-banner-play" style="width: 100%; justify-content: center;" onclick="closeKaabaInfo()">
+        تم، شكراً لكم
+      </button>
+    </div>
+  </div>
+
+  <!-- الأزرار العائمة: العودة للأعلى وتبديل الإضاءة -->
+  <div class="floating-buttons-group">
+    <button class="btn-floating" onclick="toggleGlobalTheme()" title="تبديل الوضع الليلي / الفاتح">
+      🌓
+    </button>
+    <a href="#" class="btn-floating" title="الرجوع للأعلى">
+      ↑
+    </a>
+  </div>
+
+  <!-- ==========================================================================
+       5. تذييل الصفحة الرسمي (Footer)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-content">
+        
+        <div class="footer-school-info">
+          <h3>نشاط الحج التعليمي</h3>
+          <p>تم صنعه باشتراك مع طلاب فصل 4/6 ب في مدرسة رياض خاصة</p>
+          <p style="margin-top: 4px; color: #d4af37;">مشروع مدرسي تعليمي وتفاعلي يهدف لتعزيز الوعي بمناسك الحج والطواف</p>
+        </div>
+
+        <div class="footer-students-summary">
+          <h4>الطلاب المشاركون:</h4>
+          <p>يوسف ياسر • مالك أمير • أحمد محمد شفيق</p>
+          <p style="font-size: 0.8rem; color: #9ba3af; margin-top: 4px;">فصل 4/6 ب — مدرسة رياض خاصة</p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>جميع الحقوق محفوظة للمشروع التعليمي • مدرسة رياض خاصة • فصل 4/6 ب</p>
+        <p style="margin-top: 5px; font-family: 'Amiri', serif; font-size: 1.05rem; color: #d4af37;">
+          « لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ »
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       برمجة جافاسكريبت التفاعلية (Vanilla JavaScript)
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       أ. نظام إدارة التلبية والتشغيل التلقائي (Audio & Autoplay Engine)
+       ========================================================================== */
+    const hajjAudio = document.getElementById('hajjAudio');
+    const autoplayBanner = document.getElementById('autoplayBanner');
+    const mainPlayPauseBtn = document.getElementById('mainPlayPauseBtn');
+    const playIcon = document.getElementById('playIcon');
+    const soundWaves = document.getElementById('soundWaves');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+    const durationDisplay = document.getElementById('durationDisplay');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const muteBtn = document.getElementById('muteBtn');
+
+    let isAudioPlaying = false;
+    let audioAutoplayBlocked = false;
+
+    // محاولة التشغيل التلقائي عند فتح الموقع
+    window.addEventListener('DOMContentLoaded', () => {
+      attemptAutoplay();
+      initTawafSimulation();
+    });
+
+    // استجابة للنقر الأول على أي مكان في الصفحة إذا كان المتصفح حظر التشغيل
+    document.addEventListener('click', function firstInteractionUnlock() {
+      if (!isAudioPlaying && audioAutoplayBlocked) {
+        startAudioPlayback();
+      }
+      document.removeEventListener('click', firstInteractionUnlock);
+    }, { once: true });
+
+    function attemptAutoplay() {
+      hajjAudio.volume = parseFloat(volumeSlider.value);
+      const playPromise = hajjAudio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          // نجح التشغيل التلقائي
+          isAudioPlaying = true;
+          updateAudioUI(true);
+          autoplayBanner.classList.add('hidden');
+        }).catch(error => {
+          // حظر المتصفح التشغيل التلقائي الصامت
+          console.log('Autoplay blocked by browser policy:', error);
+          audioAutoplayBlocked = true;
+          isAudioPlaying = false;
+          updateAudioUI(false);
+          autoplayBanner.classList.remove('hidden');
+        });
+      }
+    }
+
+    function handleManualAudioStart() {
+      startAudioPlayback();
+      autoplayBanner.classList.add('hidden');
+    }
+
+    function startAudioPlayback() {
+      hajjAudio.play().then(() => {
+        isAudioPlaying = true;
+        updateAudioUI(true);
+        autoplayBanner.classList.add('hidden');
+      }).catch(err => {
+        console.error('Audio play error:', err);
+      });
+    }
+
+    function toggleAudioPlay() {
+      if (hajjAudio.paused) {
+        hajjAudio.play();
+        isAudioPlaying = true;
+        updateAudioUI(true);
+        autoplayBanner.classList.add('hidden');
+      } else {
+        hajjAudio.pause();
+        isAudioPlaying = false;
+        updateAudioUI(false);
+      }
+    }
+
+    function restartAudio() {
+      hajjAudio.currentTime = 0;
+      hajjAudio.play();
+      isAudioPlaying = true;
+      updateAudioUI(true);
+    }
+
+    function updateAudioUI(playing) {
+      if (playing) {
+        playIcon.textContent = '⏸';
+        soundWaves.classList.remove('paused');
+      } else {
+        playIcon.textContent = '▶';
+        soundWaves.classList.add('paused');
+      }
+    }
+
+    // تحديث شريط التقدم والوقت
+    hajjAudio.addEventListener('timeupdate', () => {
+      if (hajjAudio.duration) {
+        const progressPercent = (hajjAudio.currentTime / hajjAudio.duration) * 100;
+        progressBar.style.width = progressPercent + '%';
+        currentTimeDisplay.textContent = formatTime(hajjAudio.currentTime);
+        durationDisplay.textContent = formatTime(hajjAudio.duration);
+      }
+    });
+
+    hajjAudio.addEventListener('loadedmetadata', () => {
+      durationDisplay.textContent = formatTime(hajjAudio.duration);
+    });
+
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '00:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    function seekAudio(event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const width = rect.width;
+      const seekTime = (clickX / width) * hajjAudio.duration;
+      hajjAudio.currentTime = seekTime;
+    }
+
+    function changeVolume(val) {
+      hajjAudio.volume = parseFloat(val);
+      hajjAudio.muted = false;
+      muteBtn.textContent = val == 0 ? '🔇' : (val < 0.5 ? '🔉' : '🔊');
+    }
+
+    function toggleMute() {
+      if (hajjAudio.muted) {
+        hajjAudio.muted = false;
+        muteBtn.textContent = '🔊';
+        volumeSlider.value = hajjAudio.volume || 0.8;
+      } else {
+        hajjAudio.muted = true;
+        muteBtn.textContent = '🔇';
+        volumeSlider.value = 0;
+      }
+    }
+
+    function changeReciter(fileName) {
+      const wasPlaying = !hajjAudio.paused;
+      hajjAudio.src = fileName;
+      hajjAudio.load();
+      if (wasPlaying) {
+        hajjAudio.play();
+        updateAudioUI(true);
+      }
+    }
+
+    // معالجة الأخطاء الذكية في تحميل الصوت لضمان استمرارية التلبية المباركة
+    hajjAudio.addEventListener('error', function() {
+      const fallbackMap = {
+        'talbiyah_ghamidi.mp3': 'https://archive.org/download/labaika_lahoma_labaik_haj/labaika_ghamidi.mp3',
+        'talbiyah.mp3': 'https://archive.org/download/labaika_lahoma_labaik_haj/labaika_ghamidi.mp3',
+        'talbiyah_group.mp3': 'https://archive.org/download/labaika_lahoma_labaik_haj/labaika.mp3',
+        'talbiyah_sudais.mp3': 'https://archive.org/download/TalbiyahImaamsOfTheHaramain/TalbiyyahSudais.mp3'
+      };
+      const cur = hajjAudio.currentSrc || hajjAudio.src;
+      for (const [key, url] of Object.entries(fallbackMap)) {
+        if (cur && cur.includes(key) && hajjAudio.src !== url) {
+          hajjAudio.src = url;
+          hajjAudio.load();
+          if (isAudioPlaying) hajjAudio.play();
+          break;
+        }
+      }
+    });
+
+    /* ==========================================================================
+       ب. محاكاة الطواف الحي حول الكعبة (Tawaf Simulation Engine on Canvas)
+       ========================================================================== */
+    const canvas = document.getElementById('tawafCanvas');
+    const ctx = canvas.getContext('2d');
+    const arena = document.getElementById('matafArena');
+
+    let pilgrims = [];
+    const PILGRIM_COUNT = 160;
+    let isTawafActive = true;
+    let tawafSpeedMultiplier = 1.0;
+    let isNightMode = false;
+
+    // فئات الطائفين بملابس الإحرام البيضاء
+    class Pilgrim {
+      constructor(radius, angle, speed, ringIndex) {
+        this.radius = radius;
+        this.angle = angle;
+        this.baseSpeed = speed;
+        this.ringIndex = ringIndex;
+        this.bobOffset = Math.random() * Math.PI * 2;
+        this.size = 3.2 + Math.random() * 1.6;
+        // إحرام أبيض مع تدرج طفيف للظل
+        this.shade = Math.floor(240 + Math.random() * 15);
+      }
+
+      update(centerX, centerY) {
+        if (!isTawafActive) return;
+
+        // الطواف يكون في اتجاه عكس عقارب الساعة
+        // الزاوية تتناقص للتحرك عكس عقارب الساعة
+        this.angle -= (this.baseSpeed * tawafSpeedMultiplier) / (this.radius * 0.15);
+        this.bobOffset += 0.08;
+      }
+
+      draw(centerX, centerY) {
+        // مسار بيضاوي ملائم لشكل صحن المطاف وحجر إسماعيل
+        // تجنب الدخول في جدار الكعبة أو داخل حجر إسماعيل
+        let rx = this.radius;
+        let ry = this.radius * 0.88; // زاوية المنظور 2.5D
+        
+        let x = centerX + Math.cos(this.angle) * rx;
+        let y = centerY + Math.sin(this.angle) * ry;
+
+        // تأثير الخطوة الخفيفة للأعلى والأسفل (Bobbing)
+        let bob = Math.sin(this.bobOffset) * 0.8;
+
+        // رسم ظل الطائف على الرخام الأبيض
+        ctx.beginPath();
+        ctx.ellipse(x, y + 2, this.size * 0.9, this.size * 0.45, 0, 0, Math.PI * 2);
+        ctx.fillStyle = isNightMode ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.18)';
+        ctx.fill();
+
+        // رسم جسد الطائف بلباس الإحرام الأبيض
+        ctx.beginPath();
+        ctx.arc(x, y + bob, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgb(${this.shade}, ${this.shade}, ${this.shade})`;
+        ctx.fill();
+
+        // رأس الطائف
+        ctx.beginPath();
+        ctx.arc(x, y - this.size * 0.6 + bob, this.size * 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = isNightMode ? '#c8b496' : '#d2a679';
+        ctx.fill();
+
+        // وشاح الإحرام الأبيض المنسدل
+        ctx.beginPath();
+        ctx.arc(x - 0.5, y + 0.5 + bob, this.size * 0.6, 0, Math.PI);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+        ctx.fill();
+      }
+    }
+
+    function initTawafSimulation() {
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      pilgrims = [];
+      const minRadius = 95;  // خارج حدود الكعبة وحجر إسماعيل تماماً
+      const maxRadius = Math.min(canvas.width, canvas.height) * 0.46;
+      const rings = 8;
+
+      for (let r = 0; r < rings; r++) {
+        const ringRadius = minRadius + (r / (rings - 1)) * (maxRadius - minRadius);
+        const pilgrimsInRing = Math.floor(14 + r * 5);
+        const baseSpeed = 0.045 - (r * 0.002);
+
+        for (let i = 0; i < pilgrimsInRing; i++) {
+          const angle = (i / pilgrimsInRing) * Math.PI * 2 + (Math.random() * 0.2);
+          pilgrims.push(new Pilgrim(ringRadius + (Math.random() * 6 - 3), angle, baseSpeed, r));
+        }
+      }
+
+      requestAnimationFrame(renderTawafFrame);
+    }
+
+    function resizeCanvas() {
+      canvas.width = arena.clientWidth;
+      canvas.height = arena.clientHeight;
+    }
+
+    function renderTawafFrame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      // رسم خطوط الرخام الدائرية في صحن المطاف
+      ctx.lineWidth = 1;
+      for (let rad = 95; rad < Math.min(canvas.width, canvas.height) * 0.46; rad += 25) {
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY, rad, rad * 0.88, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = isNightMode ? 'rgba(212, 175, 55, 0.07)' : 'rgba(212, 175, 55, 0.2)';
+        ctx.stroke();
+      }
+
+      // فرز الطائفين من الخلف إلى الأمام لمحاكاة العمق المنظوري
+      pilgrims.sort((a, b) => Math.sin(a.angle) - Math.sin(b.angle));
+
+      // تحديث ورسم جميع الطائفين
+      for (let pilgrim of pilgrims) {
+        pilgrim.update(centerX, centerY);
+        pilgrim.draw(centerX, centerY);
+      }
+
+      requestAnimationFrame(renderTawafFrame);
+    }
+
+    function toggleTawafAnimation() {
+      isTawafActive = !isTawafActive;
+      const btnIcon = document.getElementById('tawafBtnIcon');
+      const btnText = document.getElementById('tawafBtnText');
+      const cssRings = document.querySelectorAll('.css-tawaf-ring');
+      if (isTawafActive) {
+        btnIcon.textContent = '⏸';
+        btnText.textContent = 'إيقاف الحركة';
+        cssRings.forEach(ring => ring.style.animationPlayState = 'running');
+      } else {
+        btnIcon.textContent = '▶';
+        btnText.textContent = 'استئناف الحركة';
+        cssRings.forEach(ring => ring.style.animationPlayState = 'paused');
+      }
+    }
+
+    function cycleTawafSpeed() {
+      const speedLabel = document.getElementById('speedLabel');
+      const cssRings = document.querySelectorAll('.css-tawaf-ring');
+      if (tawafSpeedMultiplier === 1.0) {
+        tawafSpeedMultiplier = 1.8;
+        speedLabel.textContent = 'سريع 2x';
+        cssRings.forEach(ring => ring.style.animationDuration = '14s');
+      } else if (tawafSpeedMultiplier === 1.8) {
+        tawafSpeedMultiplier = 0.5;
+        speedLabel.textContent = 'هادئ 0.5x';
+        cssRings.forEach(ring => ring.style.animationDuration = '50s');
+      } else {
+        tawafSpeedMultiplier = 1.0;
+        speedLabel.textContent = 'عادي';
+        cssRings.forEach((ring, idx) => ring.style.animationDuration = (22 + idx * 10) + 's');
+      }
+    }
+
+    function toggleMatafAmbience() {
+      isNightMode = !isNightMode;
+      arena.classList.toggle('night-ambience', isNightMode);
+      const label = document.getElementById('ambienceLabel');
+      label.textContent = isNightMode ? 'وضع النهار' : 'وضع الليل';
+    }
+
+    /* ==========================================================================
+       ج. عداد أشواط الطواف والأدعية المأثورة
+       ========================================================================== */
+    const shawtDuas = {
+      1: {
+        dua: "« بِسْمِ اللَّهِ، وَاللَّهُ أَكْبَرُ، اللَّهُمَّ إِيمَانًا بِكَ، وَتَصْدِيقًا بِكِتَابِكَ، وَوَفَاءً بِعَهْدِكَ، وَاتِّبَاعًا لِسُنَّةِ نَبِيِّكَ مُحَمَّدٍ ﷺ »",
+        note: "يبدأ الشوط الأول بمحاذاة الحجر الأسود بالتكبير، ويستحب الرمل (الإسراع في المشي) في الأشواط الثلاثة الأولى للرجال."
+      },
+      2: {
+        dua: "« اللَّهُمَّ إِنَّ هَذَا الْبَيْتَ بَيْتُكَ، وَالْحَرَمَ حَرَمُكَ، وَالأَمْنَ أَمْنُكَ، فَقِنَا عَذَابَ النَّارِ وَأَدْخِلْنَا الْجَنَّةَ مَعَ الأَبْرَارِ »",
+        note: "يكثر الطائف في هذا الشوط من الدعاء لنفسه ولوالديه وللمسلمين، ويسأل الله الفردوس الأعلى."
+      },
+      3: {
+        dua: "« اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الشَّكِّ وَالشِّرْكِ وَالشِّقَاقِ وَالنِّفَاقِ وَسُوءِ الأَخْلاقِ، وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالأَهْلِ وَالْوَلَدِ »",
+        note: "يستحب استلام الركن اليماني باليد اليمنى إن تيسر دون تقبيل ودون تكبير."
+      },
+      4: {
+        dua: "« اللَّهُمَّ اجْعَلْهُ حَجًّا مَبْرُورًا، وَذَنْبًا مَغْفُورًا، وَسَعْيًا مَشْكُورًا، وَتِجَارَةً لَنْ تَبُورَ، يَا عَزِيزُ يَا غَفُورُ »",
+        note: "يبدأ المشي العادي (دون رمل) في هذا الشوط، مع خضوع القلب والتضرع لله."
+      },
+      5: {
+        dua: "« اللَّهُمَّ أَظِلَّنِي تَحْتَ ظِلِّ عَرْشِكَ يَوْمَ لا ظِلَّ إِلَّا ظِلُّكَ، وَاسْقِنِي مِنْ حَوْضِ نَبِيِّكَ مُحَمَّدٍ ﷺ شَرْبَةً لا أَظْمَأُ بَعْدَهَا أَبَدًا »",
+        note: "بين الركن اليماني والحجر الأسود يقرأ: ﴿ رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ ﴾."
+      },
+      6: {
+        dua: "« اللَّهُمَّ إِنَّ لَكَ عَلَيَّ حُقُوقًا كَثِيرَةً فِيمَا بَيْنِي وَبَيْنَكَ، فَاغْفِرْهَا لِي، وَحُقُوقًا كَثِيرَةً فِيمَا بَيْنِي وَبَيْنَ خَلْقِكَ، فَتَحَمَّلْهَا عَنِّي »",
+        note: "تذكر عظمة البيت ومقام إبراهيم، والتسبيح والتحميد والاستغفار."
+      },
+      7: {
+        dua: "« اللَّهُمَّ إِنِّي أَسْأَلُكَ إِيمَانًا كَامِلاً، وَيَقِينًا صَادِقًا، وَرِزْقًا وَاسِعًا، وَقَلْبًا خَاشِعًا، وَلِسَانًا ذَاكِرًا، وَتَوْبَةً قَبْلَ الْمَوْتِ، وَرَاحَةً عِنْدَ الْمَوْتِ، وَمَغْفِرَةً بَعْدَ الْمَوْتِ »",
+        note: "بختام الشوط السابع ينتهي الطواف، ويتجه الطائف لصلاة ركعتين خلف مقام إبراهيم ثم الشرب من ماء زمزم المبارك."
+      }
+    };
+
+    function selectShawt(num) {
+      const buttons = document.querySelectorAll('.shawt-tab-btn');
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle('active', (idx + 1) === num);
+      });
+
+      const displayDua = document.getElementById('shawtDuaDisplay');
+      const displayNote = document.getElementById('shawtNoteDisplay');
+      
+      displayDua.style.opacity = '0';
+      displayNote.style.opacity = '0';
+      
+      setTimeout(() => {
+        displayDua.textContent = shawtDuas[num].dua;
+        displayNote.textContent = shawtDuas[num].note;
+        displayDua.style.opacity = '1';
+        displayNote.style.opacity = '1';
+      }, 150);
+    }
+
+    /* ==========================================================================
+       د. النافذة المنبثقة لمعالم الكعبة المشرفة
+       ========================================================================== */
+    const landmarksData = {
+      kaaba: {
+        icon: "🕋",
+        title: "الكعبة المشرفة (بيت الله الحرام)",
+        body: "هي قبلة المسلمين في صلاتهم، ومطافهم في حجهم وعمرتهم. بناها نبي الله إبراهيم وابنه إسماعيل عليهما السلام بأمر من الله تعالى. يبلغ ارتفاعها قرابة 14 متراً، وتكتسي بالحرير الأسود المنقوش بآيات التوحيد المنسوجة بالذهب الخالص الخلاب."
+      },
+      hajar: {
+        icon: "💎",
+        title: "الحجر الأسود (نقطة بدء ونهاية الطواف)",
+        body: "يقع في الركن الشرقي الجنوبي للكعبة المشرفة، وهو حجر من الجنة نزل أشد بياضاً من الثلج فسودته خطايا بني آدم كما ورد في الحديث النبوي. يُشرع للطائف استلامه وتقبيله إن تيسر، أو الإشارة إليه مع التكبير، ومنه يُحسب عدد أشواط الطواف السبعة."
+      },
+      door: {
+        icon: "🚪",
+        title: "باب الكعبة المشرفة الذهبي",
+        body: "يقع في الجدار الشرقي للكعبة المشرفة، ويرتفع عن أرض المطاف بنحو مترين وربع. مصنوع من الذهب الخالص الخالي من الشوائب ومزخرف بأدق وأجمل النقوش الإسلامية والآيات القرآنية الكريمة."
+      },
+      mizab: {
+        icon: "💧",
+        title: "ميزاب الرحمة",
+        body: "هو الميزاب الموضوع على سطح الكعبة المشرفة لتصريف مياه الأمطار المتجمعة فوق السطح، ويصب في حجر إسماعيل. وهو مكسو بالذهب الخالص وله مكانة تاريخية في عمارة البيت الحرام."
+      },
+      hateem: {
+        icon: "🌙",
+        title: "حجر إسماعيل (الحطيم)",
+        body: "هو القوس الرخامي الأبيض الواقع شمال الكعبة المشرفة. يُعد جزءاً لا يتجزأ من الكعبة المشرفة داخل بنائها الأصلي الإبراهيمي، ولذلك لا يصح الطواف من داخله بل يجب أن يطوف الحاج من خلف جداره الرخامي."
+      },
+      maqam: {
+        icon: "✨",
+        title: "مقام إبراهيم عليه السلام",
+        body: "هو الحجر المبارك الذي كان يقف عليه خليل الله إبراهيم عليه السلام أثناء رفعه لقواعد البيت الحرام مع ابنه إسماعيل، وقد ظهر فيه أثر قدميه الشريفتين. يستحب للحاج أن يصلي خلفه ركعتي الطواف امتثالاً لقوله تعالى: ﴿وَاتَّخِذُوا مِنْ مَقَامِ إِبْرَاهِيمَ مُصَلًّى﴾."
+      }
+    };
+
+    function showKaabaInfo(type) {
+      const data = landmarksData[type];
+      if (!data) return;
+      document.getElementById('modalIcon').textContent = data.icon;
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalBody').textContent = data.body;
+      document.getElementById('kaabaModal').classList.add('active');
+    }
+
+    function closeKaabaInfo() {
+      document.getElementById('kaabaModal').classList.remove('active');
+    }
+
+    /* ==========================================================================
+       هـ. المسابقة التفاعلية واختبار المعلومات المدرسية (Hajj Quiz Engine)
+       ========================================================================== */
+    let quizScore = 0;
+    const answeredQuestions = new Set();
+
+    function checkAnswer(qIndex, optionIndex, isCorrect) {
+      if (answeredQuestions.has(qIndex)) return;
+      answeredQuestions.add(qIndex);
+
+      const qBox = document.getElementById(`q${qIndex}`);
+      const buttons = qBox.querySelectorAll('.quiz-option-btn');
+      const feedback = document.getElementById(`feedback-${qIndex}`);
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        btn.style.cursor = 'default';
+        if ((idx + 1) === optionIndex) {
+          if (isCorrect) {
+            btn.classList.add('correct');
+            feedback.style.color = '#52b788';
+            feedback.textContent = '✨ أحسنت! إجابة صحيحة وموفقة.';
+            quizScore += 1;
+          } else {
+            btn.classList.add('wrong');
+            feedback.style.color = '#ff6b6b';
+            feedback.textContent = '❌ إجابة غير صحيحة، حاول تذكر المعلومة من الشرح أعلاه.';
+          }
+        }
+      });
+
+      feedback.style.display = 'block';
+      updateQuizScoreDisplay();
+    }
+
+    function updateQuizScoreDisplay() {
+      const scoreDisplay = document.getElementById('quizScoreText');
+      if (answeredQuestions.size === 3) {
+        if (quizScore === 3) {
+          scoreDisplay.innerHTML = `🎉 مبروك! حصلت على الدرجة الكاملة: <strong>${quizScore} من ٣</strong>! أنت بطل متميز في معرفة مناسك الحج! 🌟`;
+        } else {
+          scoreDisplay.innerHTML = `👏 نتيجتك: <strong>${quizScore} من ٣</strong>. أحسنت المحاولة وبوركت جهودك!`;
+        }
+      } else {
+        scoreDisplay.innerHTML = `النقاط الحالية: <strong>${quizScore} من ٣</strong> (أكمل بقية الأسئلة)`;
+      }
+    }
+
+    /* ==========================================================================
+       و. تبديل الوضع الليلي العام للموقع (Theme Toggle)
+       ========================================================================== */
+    function toggleGlobalTheme() {
+      document.body.classList.toggle('night-mode');
+    }
+  </script>
+
+</body>
+</html>
