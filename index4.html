@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activity English to Sixth Grade (Primary School)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* style.css — تصميم تعليمي: أزرق فاتح / أبيض / أزرق داكن */
+:root{--bg:#f0f7ff;--card:#fff;--txt:#14305f;--sub:#5b7399;--main:#0d2b66;--mid:#1e63d6;--light:#4aa3ff;--soft:#e3f0ff;--ok:#1a9d55;--bad:#e04848;--sh:0 6px 20px rgba(13,43,102,.10)}
+body.dark{--bg:#0a1429;--card:#13213f;--txt:#e8f0ff;--sub:#9db3d8;--main:#0a1c44;--mid:#3d86f0;--light:#5aaeff;--soft:#1b2f5a;--sh:0 6px 20px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--txt);transition:background .3s,color .3s;line-height:1.7}
+.hidden{display:none!important}
+.loader{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:99;font-size:1.3rem;font-weight:700;color:var(--mid)}
+button{font:inherit;font-weight:600;cursor:pointer;border:0;border-radius:12px;padding:.65rem 1.1rem;background:var(--mid);color:#fff;transition:.2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.08)}
+input{font:inherit;width:100%;padding:.8rem 1rem;margin:.4rem 0;border:2px solid var(--soft);border-radius:12px;background:var(--card);color:var(--txt);outline:0;transition:.2s}
+input:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(74,163,255,.18)}
+/* شاشة الدخول */
+.auth{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.2rem;text-align:center;color:#fff;background:radial-gradient(circle at 15% 20%,#4aa3ff55,transparent 40%),radial-gradient(circle at 85% 80%,#ffffff22,transparent 35%),linear-gradient(150deg,#0d2b66,#1e63d6 60%,#4aa3ff)}
+.auth h1{font-size:clamp(1.3rem,4.5vw,2.2rem);direction:ltr;margin:.2rem 0;text-shadow:0 2px 10px #0004}
+.auth>p{margin:0 0 1.2rem;opacity:.92}
+.card{background:var(--card);color:var(--txt);padding:1.2rem 1.3rem;border-radius:18px;box-shadow:var(--sh);animation:up .5s}
+.auth .card{width:min(430px,100%);padding:1.5rem;text-align:right}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.tabs{display:flex;gap:.4rem;background:var(--soft);padding:.3rem;border-radius:14px;margin-bottom:.8rem}
+.tabs button{flex:1;background:transparent;color:var(--sub)}.tabs .on{background:var(--mid);color:#fff;box-shadow:var(--sh)}
+.primary{width:100%;margin:.5rem 0;background:linear-gradient(135deg,var(--mid),var(--light));padding:.8rem}
+#forgot{color:var(--mid);font-size:.9rem}
+.google{width:100%;background:#fff;color:#333;border:1px solid #d6dbe3;display:flex;gap:.6rem;justify-content:center;align-items:center;margin-top:.6rem}
+.msg{min-height:1.4rem;color:var(--bad);font-weight:700;margin:.5rem 0 0}.msg.ok{color:var(--ok)}
+/* التطبيق */
+.app{display:flex;min-height:100vh}
+aside{width:250px;background:linear-gradient(180deg,var(--main),#143d8f);color:#fff;padding:1.2rem 1rem;display:flex;flex-direction:column;gap:.8rem;position:sticky;top:0;height:100vh}
+aside h2{margin:.2rem 0 1rem;font-size:1.25rem;direction:ltr;text-align:center}
+aside nav{display:flex;flex-direction:column;gap:.4rem;flex:1}
+aside button{background:rgba(255,255,255,.08);text-align:right;padding:.75rem 1rem}
+aside button:hover{background:rgba(255,255,255,.18)}aside .on{background:#fff;color:var(--main)}
+#logout{background:rgba(224,72,72,.9);text-align:center}
+.content{flex:1;padding:1.2rem;min-width:0;max-width:1100px;margin:0 auto}
+header{display:flex;gap:.6rem;align-items:center;background:var(--card);padding:.6rem;border-radius:16px;box-shadow:var(--sh);margin-bottom:1.2rem}
+header input{margin:0;flex:1}#menuBtn{display:none}#theme{background:var(--soft);color:var(--txt)}
+#view>*{animation:up .4s}
+.hero{background:linear-gradient(135deg,var(--mid),var(--light));color:#fff;padding:1.8rem;border-radius:20px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.hero::after{content:"ABC";position:absolute;left:-10px;bottom:-30px;font-size:7rem;font-weight:900;opacity:.12;direction:ltr}
+.hero h2{margin:0 0 .3rem;font-size:1.6rem}.hero p{margin:0;opacity:.95}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin:1rem 0}
+.stat{text-align:center}.stat span{font-size:2rem}.stat b{display:block;font-size:2rem;color:var(--mid)}.stat small{color:var(--sub)}
+.card h2{margin-top:0}.card h3{margin-top:0;color:var(--mid)}
+.grid>.card{border-top:5px solid var(--light);transition:.25s}.grid>.card:hover{transform:translateY(-4px)}
+.en{direction:ltr;text-align:left;font-weight:700}
+table{width:100%;border-collapse:collapse;margin:.5rem 0}td,th{padding:.5rem;border-bottom:1px solid var(--soft)}
+td button{padding:.2rem .6rem;background:var(--soft);color:var(--txt)}
+.opt{display:block;width:100%;margin:.5rem 0;padding:.9rem 1rem;background:var(--card);color:var(--txt);border:2px solid var(--soft);direction:ltr;text-align:left;font-size:1.05rem}
+.opt:hover{border-color:var(--light);background:var(--soft)}
+.opt.right{background:var(--ok);color:#fff;border-color:var(--ok)}.opt.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.bar{height:18px;background:var(--soft);border-radius:10px;overflow:hidden;margin:.6rem 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ok),#5fd68f);transition:width .8s;border-radius:10px}
+@media(max-width:760px){
+ aside{position:fixed;top:0;bottom:0;right:-270px;z-index:50;transition:.3s;height:100%}aside.open{right:0;box-shadow:-10px 0 30px #0006}
+ #menuBtn{display:block;background:var(--soft);color:var(--txt)}.content{padding:.8rem}}
+
+</style>
+</head>
+<body>
+<div id="loader" class="loader">جارٍ التحميل...</div>
+<script>setTimeout(function(){var l=document.getElementById("loader");if(l&&!l.classList.contains("hidden"))l.innerHTML="تعذّر التحميل. افتح الموقع من خادم (وليس من الملف مباشرة) وتأكد من الإنترنت."},10000)</script>
+
+<!-- شاشة الدخول والتسجيل -->
+<main id="authView" class="auth hidden">
+  <h1>Activity English to Sixth Grade (Primary School)</h1>
+  <p>اللغة الإنجليزية – Connect 6 – الصف السادس الابتدائي</p>
+  <div class="card">
+    <div class="tabs"><button id="tabLogin" class="on">تسجيل الدخول</button><button id="tabReg">حساب جديد</button></div>
+    <form id="loginForm">
+      <input id="lEmail" type="email" placeholder="البريد الإلكتروني" required>
+      <input id="lPass" type="password" placeholder="كلمة المرور" required>
+      <button class="primary">دخول</button>
+      <a href="#" id="forgot">نسيت كلمة المرور؟</a>
+    </form>
+    <form id="regForm" class="hidden">
+      <input id="rName" placeholder="الاسم الكامل للطالب" required>
+      <input id="rEmail" type="email" placeholder="البريد الإلكتروني" required>
+      <input id="rPass" type="password" placeholder="كلمة المرور (6 أحرف على الأقل)" minlength="6" required>
+      <input id="rPass2" type="password" placeholder="تأكيد كلمة المرور" required>
+      <button class="primary">إنشاء الحساب</button>
+    </form>
+    <button id="googleBtn" class="google">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+      الدخول عبر Google
+    </button>
+    <p id="authMsg" class="msg"></p>
+  </div>
+</main>
+
+<!-- التطبيق (للمسجّلين فقط) -->
+<div id="appView" class="app hidden">
+  <aside id="side">
+    <h2>📘 Activity English</h2>
+    <nav>
+      <button data-v="home" class="on">🏠 الرئيسية</button>
+      <button data-v="unit4">⭐ الوحدة الرابعة</button>
+      <button data-v="units">📚 كل الوحدات</button>
+      <button data-v="quiz">📝 الاختبارات</button>
+      <button data-v="progress">📈 تقدمي</button>
+      <button data-v="tips">💡 نصائح للمذاكرة</button>
+    </nav>
+    <button id="logout">🚪 تسجيل الخروج</button>
+  </aside>
+  <section class="content">
+    <header>
+      <button id="menuBtn">☰</button>
+      <input id="search" placeholder="🔍 ابحث عن درس...">
+      <button id="theme">🌙</button>
+    </header>
+    <div id="view"></div>
+  </section>
+</div>
+<script type="module">
+/* ===== Firebase ===== */
+// firebase.js — تهيئة Firebase (Modular SDK)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import * as A from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import * as F from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCaT0zN78NBx-rd2xpYhMO77oLfkJGAwMM",
+  authDomain: "noplanta-c0083.firebaseapp.com",
+  projectId: "noplanta-c0083",
+  storageBucket: "noplanta-c0083.firebasestorage.app",
+  messagingSenderId: "256577050429",
+  appId: "1:256577050429:web:82dbab430d136bddaf9754",
+  measurementId: "G-J5H836V6DJ"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = A.getAuth(app);
+const db = F.getFirestore(app);
+isSupported().then(ok => ok && getAnalytics(app)).catch(() => {});
+A.setPersistence(auth, A.browserLocalPersistence).catch(() => {});
+
+const {
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
+  signInWithPopup, onAuthStateChanged, signOut, sendPasswordResetEmail, updateProfile
+} = A;
+const { doc, setDoc, getDoc, addDoc, collection, getDocs, query, orderBy,
+  serverTimestamp, arrayUnion } = F;
+
+const FB = { auth, db, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,
+  signInWithPopup, onAuthStateChanged, signOut, sendPasswordResetEmail, updateProfile,
+  doc, setDoc, getDoc, addDoc, collection, getDocs, query, orderBy, serverTimestamp, arrayUnion };
+
+/* ===== منطق الموقع ===== */
+// script.js — منطق الموقع: المصادقة، الدروس، الاختبارات، التقدم
+const $ = (s, r = document) => r.querySelector(s);
+const view = $("#view");
+let user = null, done = [], results = [];
+
+/* ============ المحتوى (عدّل العناوين والمفردات من كتاب Connect 6 الرسمي) ============ */
+// تنبيه: عناوين الدروس هنا عامة عمدًا ولا تدّعي أنها العناوين الرسمية للكتاب.
+const UNITS = [1, 2, 3, 4, 5, 6].map(n => ({
+  id: "u" + n, title: "Unit " + n,
+  lessons: [1, 2, 3].map(l => ({
+    id: `u${n}l${l}`, title: `Unit ${n} – Lesson ${l}`,
+    vocab: [], grammar: "أضف شرح القاعدة من الكتاب هنا.", reading: "", note: "المحتوى الرسمي يُضاف من الكتاب المدرسي."
+  }))
+}));
+// تدريب عام على مفردات وقواعد مناسبة للمرحلة (ليس نصًا رسميًا من الكتاب)
+UNITS[3].lessons[0].vocab = [["book", "كتاب"], ["teacher", "معلم"], ["school", "مدرسة"], ["friend", "صديق"]];
+UNITS[3].lessons[0].grammar = "الفعل المضارع البسيط: نضيف (s) مع He / She / It. مثال: She reads books.";
+
+const BANK = [
+  { t: "mc", q: "She ___ to school every day.", o: ["go", "goes", "going"], a: 1 },
+  { t: "mc", q: "What is the meaning of 'teacher'?", o: ["معلم", "طبيب", "سائق"], a: 0 },
+  { t: "tf", q: "'He play football' is a correct sentence.", o: ["True", "False"], a: 1 },
+  { t: "tf", q: "'Book' means كتاب.", o: ["True", "False"], a: 0 },
+  { t: "mc", q: "Choose the correct word: They ___ my friends.", o: ["is", "am", "are"], a: 2 },
+  { t: "mc", q: "Complete: I ___ English every day.", o: ["study", "studies", "studying"], a: 0 },
+  { t: "mc", q: "Opposite of 'big' is ___.", o: ["tall", "small", "long"], a: 1 },
+  { t: "mc", q: "What is the meaning of 'school'?", o: ["مدرسة", "منزل", "سوق"], a: 0 }
+];
+const TIPS = ["ذاكر 20 دقيقة يوميًا بدل ساعة واحدة في الأسبوع.", "انطق الكلمات بصوت عالٍ بعد سماعها.", "اكتب 5 جمل جديدة كل يوم.", "راجع أخطاءك في الاختبارات."];
+
+/* ============ المصادقة ============ */
+const msg = (t, ok) => { const m = $("#authMsg"); m.textContent = t; m.className = "msg" + (ok ? " ok" : ""); };
+const errAr = e => ({
+  "auth/invalid-credential": "البريد أو كلمة المرور غير صحيحة.", "auth/email-already-in-use": "هذا البريد مسجّل بالفعل.",
+  "auth/weak-password": "كلمة المرور ضعيفة.", "auth/invalid-email": "البريد الإلكتروني غير صالح.",
+  "auth/popup-closed-by-user": "تم إغلاق نافذة Google.", "auth/network-request-failed": "تحقق من الاتصال بالإنترنت."
+}[e.code] || "حدث خطأ: " + e.code);
+const busy = async (fn) => { $("#loader").classList.remove("hidden"); try { await fn(); } catch (e) { msg(errAr(e)); } $("#loader").classList.add("hidden"); };
+
+$("#tabLogin").onclick = () => { $("#loginForm").classList.remove("hidden"); $("#regForm").classList.add("hidden"); $("#tabLogin").className = "on"; $("#tabReg").className = ""; };
+$("#tabReg").onclick = () => { $("#regForm").classList.remove("hidden"); $("#loginForm").classList.add("hidden"); $("#tabReg").className = "on"; $("#tabLogin").className = ""; };
+$("#loginForm").onsubmit = e => { e.preventDefault(); busy(() => FB.signInWithEmailAndPassword(auth, $("#lEmail").value, $("#lPass").value)); };
+$("#regForm").onsubmit = e => {
+  e.preventDefault();
+  if ($("#rPass").value !== $("#rPass2").value) return msg("كلمتا المرور غير متطابقتين.");
+  busy(async () => {
+    const c = await FB.createUserWithEmailAndPassword(auth, $("#rEmail").value, $("#rPass").value);
+    await FB.updateProfile(c.user, { displayName: $("#rName").value });
+    user = c.user; $("#loader").classList.add("hidden"); start();
+  });
+};
+$("#googleBtn").onclick = () => busy(() => FB.signInWithPopup(auth, new FB.GoogleAuthProvider()));
+$("#forgot").onclick = e => { e.preventDefault(); const m = $("#lEmail").value; if (!m) return msg("اكتب بريدك أولًا.");
+  busy(async () => { await FB.sendPasswordResetEmail(auth, m); msg("تم إرسال رابط إعادة التعيين.", true); }); };
+$("#logout").onclick = () => FB.signOut(auth);
+
+FB.onAuthStateChanged(auth, async u => {
+  user = u; $("#loader").classList.add("hidden");
+  $("#authView").classList.toggle("hidden", !!u); $("#appView").classList.toggle("hidden", !u);
+  if (u) start();
+});
+
+/* ============ البيانات (Firestore: users/{uid}/...) ============ */
+async function load() {
+  try {
+    const p = await FB.getDoc(FB.doc(db, "users", user.uid, "data", "progress"));
+    done = p.exists() ? p.data().done || [] : [];
+    const r = await FB.getDocs(FB.query(FB.collection(db, "users", user.uid, "results"), FB.orderBy("at", "desc")));
+    results = r.docs.map(d => d.data());
+  } catch (e) { console.error(e); }
+}
+async function start() { await load(); go("home"); }
+async function complete(id) {
+  if (!done.includes(id)) done.push(id);
+  await FB.setDoc(FB.doc(db, "users", user.uid, "data", "progress"), { done: FB.arrayUnion(id) }, { merge: true });
+  alert("تم تسجيل إكمال الدرس ✅"); go("progress");
+}
+const speak = w => { const u = new SpeechSynthesisUtterance(w); u.lang = "en-US"; speechSynthesis.speak(u); };
+window.speakWord = speak; window.completeLesson = complete;
+
+/* ============ الشاشات ============ */
+const total = UNITS.reduce((a, u) => a + u.lessons.length, 0);
+const views = {
+  home: () => `<div class="hero"><h2>مرحبًا ${user.displayName || "يا بطل"} 👋</h2><p>استعد لتعلّم الإنجليزية خطوة بخطوة، وابدأ من الوحدة الرابعة.</p></div>
+    <div class="grid"><div class="card stat"><span>📖</span><b>${done.length}/${total}</b><small>دروس مكتملة</small></div>
+    <div class="card stat"><span>📝</span><b>${results.length}</b><small>اختبارات تم حلها</small></div>
+    <div class="card stat"><span>📢</span><small>إعلان: ابدأ بالوحدة الرابعة ثم جرّب الاختبار.</small></div></div>`,
+  unit4: () => unitHtml(UNITS[3]),
+  units: () => UNITS.map(unitHtml).join(""),
+  quiz: () => quizStart(),
+  progress: () => {
+    const sc = results.map(r => r.percent), pct = Math.round(done.length / total * 100);
+    return `<div class="card"><h2>تقدمي</h2><div class="bar"><i style="width:${pct}%"></i></div><p>نسبة التقدم: ${pct}%</p>
+    <p>الاختبارات: ${results.length} — أعلى نتيجة: ${sc.length ? Math.max(...sc) : 0}% — المتوسط: ${sc.length ? Math.round(sc.reduce((a, b) => a + b) / sc.length) : 0}%</p>
+    <p>${sc.some(s => s >= 80) ? "🏅 شهادة تفوق: حققت 80% أو أكثر!" : "حقق 80% في اختبار لتحصل على شهادة."}</p></div>`;
+  },
+  tips: () => `<div class="card"><h2>💡 نصائح للمذاكرة</h2><ul>${TIPS.map(t => `<li>${t}</li>`).join("")}</ul></div>`
+};
+function unitHtml(u) {
+  return `<div class="card"><h2 class="en">${u.title}</h2><div class="grid">${u.lessons.map(l => `
+    <div class="card"><h3 class="en">${l.title}</h3>
+    ${l.vocab.length ? `<table>${l.vocab.map(v => `<tr><td class="en">${v[0]} <button onclick="speakWord('${v[0]}')">🔊</button></td><td>${v[1]}</td></tr>`).join("")}</table>` : ""}
+    <p>${l.grammar}</p><small>${l.note}</small><br>
+    <button onclick="completeLesson('${l.id}')">${done.includes(l.id) ? "✅ مكتمل" : "إنهاء الدرس"}</button></div>`).join("")}</div></div>`;
+}
+function go(v) {
+  document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
+  view.innerHTML = views[v](); $("#side").classList.remove("open");
+}
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => go(b.dataset.v));
+$("#menuBtn").onclick = () => $("#side").classList.toggle("open");
+$("#theme").onclick = () => { document.body.classList.toggle("dark"); localStorage.theme = document.body.classList.contains("dark") ? "d" : "l"; };
+if (localStorage.theme === "d") document.body.classList.add("dark");
+$("#search").oninput = e => {
+  const q = e.target.value.toLowerCase().trim(); if (!q) return go("home");
+  const hits = UNITS.flatMap(u => u.lessons).filter(l => l.title.toLowerCase().includes(q) || l.vocab.some(v => v[0].includes(q) || v[1].includes(q)));
+  view.innerHTML = `<div class="grid">${hits.map(l => `<div class="card"><h3 class="en">${l.title}</h3></div>`).join("") || "<p>لا توجد نتائج.</p>"}</div>`;
+};
+
+/* ============ الاختبارات ============ */
+let Q = [], qi = 0, score = 0, timer, left = 0, wrong = [];
+function quizStart() {
+  return `<div class="card"><h2>📝 اختبار عشوائي</h2><p>${BANK.length} أسئلة — لكل سؤال 20 ثانية.</p><button onclick="runQuiz()">ابدأ الاختبار</button></div>`;
+}
+window.runQuiz = () => { Q = [...BANK].sort(() => Math.random() - .5); qi = 0; score = 0; wrong = []; showQ(); };
+function showQ() {
+  clearInterval(timer);
+  if (qi >= Q.length) return finish();
+  const q = Q[qi]; left = 20;
+  view.innerHTML = `<div class="card"><p>سؤال ${qi + 1}/${Q.length} — ⏱ <b id="tm">${left}</b></p><h3 class="en">${q.q}</h3>
+    ${q.o.map((o, i) => `<button class="opt" data-i="${i}">${o}</button>`).join("")}<p id="fb"></p></div>`;
+  view.querySelectorAll(".opt").forEach(b => b.onclick = () => answer(+b.dataset.i));
+  timer = setInterval(() => { $("#tm").textContent = --left; if (left <= 0) answer(-1); }, 1000);
+}
+function answer(i) {
+  clearInterval(timer); const q = Q[qi], btns = view.querySelectorAll(".opt");
+  btns.forEach(b => b.disabled = true); btns[q.a].classList.add("right");
+  if (i === q.a) { score++; $("#fb").textContent = "✅ إجابة صحيحة!"; }
+  else { if (i >= 0) btns[i].classList.add("wrong"); wrong.push(q.q); $("#fb").textContent = "❌ الإجابة الصحيحة: " + q.o[q.a]; }
+  qi++; setTimeout(showQ, 1500);
+}
+async function finish() {
+  const percent = Math.round(score / Q.length * 100);
+  view.innerHTML = `<div class="card"><h2>النتيجة: ${percent}%</h2><p>صحيح: ${score} — خطأ: ${Q.length - score}</p>
+    ${wrong.length ? `<p>راجع: <span class="en">${wrong.join(" | ")}</span></p>` : "<p>ممتاز! 🎉</p>"}<button onclick="runQuiz()">إعادة الاختبار</button><p id="sv">جارٍ حفظ النتيجة...</p></div>`;
+  try {
+    await FB.addDoc(FB.collection(db, "users", user.uid, "results"), { percent, score, total: Q.length, at: FB.serverTimestamp() });
+    results.unshift({ percent }); $("#sv").textContent = "تم حفظ النتيجة ✅";
+  } catch (e) { $("#sv").textContent = "تعذر حفظ النتيجة (تحقق من قواعد Firestore)."; }
+}
+
+</script>
+</body>
+</html>
